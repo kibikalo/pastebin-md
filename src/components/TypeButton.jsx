@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 
-const DropdownButton = () => {
+const TypeButton = ({ onSelect, selectedValue}) => {
     const [isOpen, setIsOpen] = useState(false);
-    const [selectedValue, setSelectedValue] = useState('Expiration type');
 
     const handleSelect = (value) => {
-        setSelectedValue(value);
+        onSelect(value);
         setIsOpen(false); // Close the dropdown
+        console.log("On TypeButton click value: " + value);
     };
 
     return (
@@ -25,15 +25,14 @@ const DropdownButton = () => {
             {isOpen && (
                 <div className="absolute right-0 z-10 mt-2 w-full origin-top-right rounded-md bg-blue-900 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"> 
                     <div className="py-1 ">
-                        {['None', 'Minutes', 'Hours', 'Days', 'Weeks', 'Months', 'Years'].map((value) => (
-                            <a 
+                        {['Minutes', 'Hours', 'Days', 'Weeks', 'Months', 'Years'].map((value) => (
+                            <div 
                                 key={value}
-                                href="#"
                                 className="text-gray-200 block px-4 py-2 text-sm"
                                 onClick={() => handleSelect(value)}
                             >
                                 {value}
-                            </a>
+                            </div>
                         ))}
                     </div>
                 </div>
@@ -42,4 +41,4 @@ const DropdownButton = () => {
     );
 };
 
-export default DropdownButton;
+export default TypeButton;

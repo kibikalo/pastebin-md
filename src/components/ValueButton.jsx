@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 
-const ValueButton = () => {
+const ValueButton = ( {onSelectValue, selectedValue} ) => {
     const [isOpen, setIsOpen] = useState(false);
-    const [selectedValue, setSelectedValue] = useState('Expiration type');
 
     const handleSelect = (value) => {
-        setSelectedValue(value);
+        onSelectValue(value);
         setIsOpen(false); // Close the dropdown
+        console.log("On ValueButton click value: " + value);
     };
 
     return (
@@ -25,7 +25,7 @@ const ValueButton = () => {
             {isOpen && (
                 <div className="absolute right-0 z-10 mt-2 w-full origin-top-right rounded-md bg-blue-900 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"> 
                     <div className="py-1 overflow-y-auto scrollbar-thin scrollbar-thumb-orange-300 scrollbar-track-blue-300" style={{ maxHeight: '260px' }}>
-                        {['0', '5', '10', '15', '20', '25', '30', '35', '40', '45', '50', '55', '60'].map((value) => (
+                        {['5', '10', '15', '20', '25', '30', '35', '40', '45', '50', '55', '60'].map((value) => (
                             <a 
                                 key={value}
                                 href="#"
