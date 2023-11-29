@@ -1,11 +1,12 @@
 import React from 'react';
-import { createPaste } from '../services/apiService.js';
+import { createPaste } from '../../services/apiService.js';
 
 const SaveButton = ({ markdown, expirationValue, expirationType, burnOnReading, onSuccess, onError }) => {
   const handleSaveClick = async () => {
     try {
-      console.log("On SaveButton click values: " + "Markdown: " + markdown + "\n Type: " + expirationType + "\n Value: " + expirationValue + "\n Burn On Reading: " + burnOnReading);
-      const response = await createPaste(markdown, expirationValue, expirationType.toUpperCase(), burnOnReading);
+      const formattedMarkdown = markdown.replace(/\n/g, '\\n');
+      console.log("On SaveButton click values: \n" + "Markdown: " + formattedMarkdown + "\n Type: " + expirationType + "\n Value: " + expirationValue + "\n Burn On Reading: " + burnOnReading);
+      const response = await createPaste(formattedMarkdown, expirationValue, expirationType, burnOnReading);
       onSuccess(response); // Call the onSuccess handler
     } catch (error) {
       onError(error); // Call the onError handler

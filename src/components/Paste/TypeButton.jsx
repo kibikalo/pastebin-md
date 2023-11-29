@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
+import { expirationTypeMapping } from '../../constants/ExpirationTypeMapping';
 
-const ValueButton = ( {onSelectValue, selectedValue} ) => {
+const TypeButton = ({ onSelect, selectedValue}) => {
     const [isOpen, setIsOpen] = useState(false);
 
-    const handleSelect = (value) => {
-        onSelectValue(value);
+    const handleSelect = (displayValue) => {
+        const apiValue = expirationTypeMapping[displayValue] || displayValue;
+        onSelect(apiValue);
         setIsOpen(false); // Close the dropdown
-        console.log("On ValueButton click value: " + value);
+        console.log("On TypeButton click value: " + apiValue);
     };
 
     return (
@@ -24,19 +26,15 @@ const ValueButton = ( {onSelectValue, selectedValue} ) => {
 
             {isOpen && (
                 <div className="absolute right-0 z-10 mt-2 w-full origin-top-right rounded-md bg-blue-900 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"> 
-                    <div className="py-1 overflow-y-auto scrollbar-thin scrollbar-thumb-orange-300 scrollbar-track-blue-300" style={{ maxHeight: '260px' }}>
-                        {['5', '10', '15', '20', '25', '30', '35', '40', '45', '50', '55', '60'].map((value) => (
-                            <a 
-                                key={value}
-                                href="#"
+                    <div className="py-1">
+                        {['None', 'Minutes', 'Hours', 'Days', 'Weeks', 'Months', 'Years'].map((displayValue) => (
+                            <div 
+                                key={displayValue}
                                 className="text-gray-200 block px-4 py-2 text-sm"
-                                onClick={(e) => {
-                                    e.preventDefault(); // Prevent the default anchor behavior
-                                    handleSelect(value);
-                                }}
+                                onClick={() => handleSelect(displayValue)}
                             >
-                                {value}
-                            </a>
+                                {displayValue}
+                            </div>
                         ))}
                     </div>
                 </div>
@@ -45,4 +43,4 @@ const ValueButton = ( {onSelectValue, selectedValue} ) => {
     );
 };
 
-export default ValueButton;
+export default TypeButton;

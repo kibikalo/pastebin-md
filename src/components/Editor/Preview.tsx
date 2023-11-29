@@ -28,12 +28,14 @@ export default function Preview({markdown} : PreviewProps) {
     const parsed = DOMPurify.sanitize(marked.parse(markdown));
 
     return (
-    <div>
-        <div className="w-full bg-gray-900 p-3 text-grey-200 uppercase tracking-wider">
+    <div className="border-solid border-y-2 border-x-2 border-gray-600 box-border"
+        // style={{ height: '650px' }}
+        >
+        {/* <div className="w-full bg-gray-900 p-3 text-grey-200 uppercase tracking-wider rounded-t-lg">
             Preview
-        </div>
+        </div> */}
         <div 
-            className="p-6 prose prose-invert prose-a:text-pink-500" 
+            className="overflow-y-contain p-6 prose prose-invert prose-a:text-pink-600 box-border rounded-lg scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-gray-700"
             dangerouslySetInnerHTML={{__html: parsed }}
         />
     </div>

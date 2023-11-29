@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
+import { expirationValueMapping } from '../../constants/ExpirationValueMapping';
 
-const TypeButton = ({ onSelect, selectedValue}) => {
+const ValueButton = ( {onSelectValue, selectedValue} ) => {
     const [isOpen, setIsOpen] = useState(false);
 
-    const handleSelect = (value) => {
-        onSelect(value);
+    const handleSelect = (displayValue) => {
+        const apiValue = expirationValueMapping[displayValue] || displayValue;
+        onSelectValue(apiValue);
         setIsOpen(false); // Close the dropdown
-        console.log("On TypeButton click value: " + value);
+        console.log("On ValueButton click value: " + apiValue);
     };
 
     return (
@@ -24,14 +26,16 @@ const TypeButton = ({ onSelect, selectedValue}) => {
 
             {isOpen && (
                 <div className="absolute right-0 z-10 mt-2 w-full origin-top-right rounded-md bg-blue-900 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"> 
-                    <div className="py-1 ">
-                        {['Minutes', 'Hours', 'Days', 'Weeks', 'Months', 'Years'].map((value) => (
+                    <div className="py-1 overflow-y-auto scrollbar-thin scrollbar-thumb-blue-700 scrollbar-track-blue-800" style={{ maxHeight: '260px' }}>
+                        {['0', '5', '10', '15', '20', '25', '30', '35', '40', '45', '50', '55', '60'].map((displayValue) => (
                             <div 
-                                key={value}
+                                key={displayValue}
                                 className="text-gray-200 block px-4 py-2 text-sm"
-                                onClick={() => handleSelect(value)}
+                                onClick={() => {
+                                    handleSelect(displayValue);
+                                }}
                             >
-                                {value}
+                                {displayValue}
                             </div>
                         ))}
                     </div>
@@ -41,4 +45,4 @@ const TypeButton = ({ onSelect, selectedValue}) => {
     );
 };
 
-export default TypeButton;
+export default ValueButton;

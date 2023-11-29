@@ -1,18 +1,33 @@
-import { useState } from 'react';
-import Editor from './components/Editor.tsx';
-import Preview from './components/Preview.tsx';
-import TypeButton from './components/TypeButton.jsx';
-import ValueButton from './components/ValueButton.jsx';
-import Checkbox from './components/Checkbox.jsx';
-import SaveButton from './components/SaveButton.jsx';
+import { useState, useRef, useEffect } from 'react';
+import Editor from './components/Editor/Editor.tsx';
+import Preview from './components/Editor/Preview.tsx';
+import TypeButton from './components/Paste/TypeButton.jsx';
+import ValueButton from './components/Paste/ValueButton.jsx';
+import Checkbox from './components/Paste/BurnOnReading.jsx';
+import SaveButton from './components/Paste/SaveButton.jsx';
+import PasteView from './components/Editor/PasteView.jsx';
+import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import { expirationTypeMapping } from './constants/ExpirationTypeMapping.js';
+import { expirationValueMapping } from './constants/ExpirationValueMapping.js';
+import Toolbar from './components/Editor/Toolbar.jsx';
+import { addBoldText } from './components/Editor/toolbarLogic/boldButtonFunction.ts'
+import ThemeSwitcher from './components/Buttons/ThemeSwitcher.jsx'
+import Modal from './components/Paste/PastePreferences.jsx';
+
 
 function App() {
   // State for the markdown content
-  const [markdown, setMarkdown] = useState('# [Pastebin.md]()\n ```diff\n - by @kibikalo\n ```\n ```json\n {\n "created-by": "kibikalo"\n }\n ```\n');
+  const [markdown, setMarkdown] = useState('# [Pastebin.md]()\n ```json\n{\n "by": "kibikalo"\n }\n ```\n');
+
+  const textAreaRef = useRef<HTMLTextAreaElement>(null);
+
+  // State for themes
+  const [theme, setTheme] = useState('light');
+
   // State for the Expiration Type selection
-  const [expirationType, setExpirationType] = useState('Expiration Type');
+  const [expirationType, setExpirationType] = useState('NULL');
   // State for the Expiration Value selection
-  const [expirationValue, setExpirationValue] = useState('Expiration Value');
+  const [expirationValue, setExpirationValue] = useState('0');
   // State for the Burn On Reading selection
   const [burnOnReading, setBurnOnReading] = useState(false);
 
@@ -20,7 +35,22 @@ function App() {
     setMarkdown(markdown);
   }
 
-  // Callback function to update the expirationType from DropdownButton
+  const handleBoldButton = () => {
+    addBoldText(textAreaRef, markdown, setMarkdown);
+    console.log('Bold executed');
+  };
+
+  const handleItalicButton = () => {
+    console.log('Italic executed');
+    // Perform Action 2
+  };
+
+  const handleUnderlineButton = () => {
+    console.log('Underline executed');
+    // Perform Action 3
+  };
+
+  // Handler function to update the Expiration Type state
   const handleSelectExpirationType = (value) => {
     if (!burnOnReading) { // Only update if burnOnReading is not checked
       setExpirationType(value);
@@ -38,7 +68,7 @@ function App() {
   const handleBurnOnReadingChange = (isChecked) => {
     setBurnOnReading(isChecked);
     if (isChecked) {
-      setExpirationType('Null');
+      setExpirationType('NULL');
       setExpirationValue('0');
     }
   };
@@ -54,21 +84,59 @@ function App() {
   };
 
   return (
-    <div className='flex flex-col w-full h-screen bg-gray-800 text-white'>
-    {/* Top bar with buttons */}
-    <div className='flex flex-row gap-2 p-4'>
-      <TypeButton onSelect={handleSelectExpirationType} selectedValue={expirationType}/>
-      <ValueButton selectedValue={expirationValue} onSelectValue={handleSelectExpirationValue} />
-      <Checkbox checked={burnOnReading} onChange={(e) => handleBurnOnReadingChange(e.target.checked)} />
-      <SaveButton markdown={markdown} expirationValue={expirationValue} expirationType={expirationType}  burnOnReading={burnOnReading} onSuccess={onSuccess} onError={onError} />
-    </div>
+    <Router>
+      <Routes>
+        {/* Route for creating new pastes */}
+        <Route path='/' element= {
+          <div className='flex flex-col w-full h-screen bg-gray-800 text-white'>
 
-    {/* Main content area for editor and preview */}
-    <main className='flex-grow grid grid-cols-1 sm:grid-cols-2'>
-      <Editor markdown={markdown} setMarkdown={callback} />
-      <Preview markdown={markdown} />
-    </main>
-  </div>
+            <Toolbar  
+                      boldButtonAction={handleBoldButton}
+                      italicButtonAction={handleItalicButton}
+                      underlineButtonAction={handleUnderlineButton}
+            />
+      
+            {/* Main content area for editor and preview */}
+            <main className='flex-grow grid grid-cols-1 sm:grid-cols-2 px-20   py-3'>
+              <Editor markdown={markdown} setMarkdown={callback} textAreaRef={textAreaRef} />
+              <Preview markdown={markdown} />
+            </main>
+
+            {/* Save bar with buttons contolling paste preferences*/}
+            <div className='flex flex-row gap-2 p-4 bg-gray-700'>
+              <span>Expiration Type</span>
+              <TypeButton 
+                          onSelect={handleSelectExpirationType} 
+                          selectedValue={Object.keys(expirationTypeMapping).find(key => expirationTypeMapping[key] === expirationType) || 'Select Expiration Type'}/>
+
+              <span>Expiration Value</span>
+              <ValueButton  
+                            onSelectValue={handleSelectExpirationValue}
+                            selectedValue={Object.keys(expirationValueMapping).find(key => expirationValueMapping[key] === expirationValue) || 'Select Expiration Value'}/>
+    
+              <Checkbox 
+                        checked={burnOnReading} 
+                        onChange={(e) => handleBurnOnReadingChange(e.target.checked)} />
+
+              <SaveButton 
+                          markdown={markdown} 
+                          expirationValue={expirationValue}
+                          expirationType={expirationType}
+                          burnOnReading={burnOnReading} 
+                          onSuccess={onSuccess} 
+                          onError={onError} />
+              
+              <ThemeSwitcher />
+              <Modal />
+            </div>
+
+          </div>
+        }/>
+
+        {/* Route for viewing a paste by hash */}
+        <Route path="/:hash" element={ <PasteView/> } />
+      </Routes>
+    </Router>
   );
 }
 
