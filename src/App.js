@@ -1,18 +1,12 @@
-import { useState, useRef, useEffect } from 'react';
+import { useRef, useState } from 'react';
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import ThemeSwitcher from './components/Buttons/ThemeSwitcher.jsx';
 import Editor from './components/Editor/Editor.tsx';
-import Preview from './components/Editor/Preview.tsx';
-import TypeButton from './components/Paste/TypeButton.jsx';
-import ValueButton from './components/Paste/ValueButton.jsx';
-import Checkbox from './components/Paste/BurnOnReading.jsx';
-import SaveButton from './components/Paste/SaveButton.jsx';
 import PasteView from './components/Editor/PasteView.jsx';
-import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
-import { expirationTypeMapping } from './constants/ExpirationTypeMapping.js';
-import { expirationValueMapping } from './constants/ExpirationValueMapping.js';
+import Preview from './components/Editor/Preview.tsx';
 import Toolbar from './components/Editor/Toolbar.jsx';
-import { addBoldText } from './components/Editor/toolbarLogic/boldButtonFunction.ts'
-import ThemeSwitcher from './components/Buttons/ThemeSwitcher.jsx'
-import SavePasteModal from './components/Paste/SavePasteModal.jsx';
+import { addBoldText } from './components/Editor/toolbarLogic/boldButtonFunction.ts';
+import PasteSettingsModal from './components/Paste/PasteSettingsModal.jsx';
 
 
 function App() {
@@ -26,13 +20,6 @@ function App() {
 
   // State for Paste Menu visibilitie
   const [showPasteModal, setShowPasteModal] = useState(false);
-
-  // State for the Expiration Type selection
-  const [expirationType, setExpirationType] = useState('NULL');
-  // State for the Expiration Value selection
-  const [expirationValue, setExpirationValue] = useState('0');
-  // State for the Burn On Reading selection
-  const [burnOnReading, setBurnOnReading] = useState(false);
 
   const callback = (markdown: string) => {
     setMarkdown(markdown);
@@ -51,39 +38,6 @@ function App() {
   const handleUnderlineButton = () => {
     console.log('Underline executed');
     // Perform Action 3
-  };
-
-  // Handler function to update the Expiration Type state
-  const handleSelectExpirationType = (value) => {
-    if (!burnOnReading) { // Only update if burnOnReading is not checked
-      setExpirationType(value);
-    }
-  };
-
-  // Handler function to update the Expiration Value state
-  const handleSelectExpirationValue = (value) => {
-    if (!burnOnReading) { // Only update if burnOnReading is not checked
-      setExpirationValue(value);
-    }
-  };
-
-  // Handler function to update the burnOnReading state
-  const handleBurnOnReadingChange = (isChecked) => {
-    setBurnOnReading(isChecked);
-    if (isChecked) {
-      setExpirationType('NULL');
-      setExpirationValue('0');
-    }
-  };
-
-  // Define the onSuccess handler
-  const onSuccess = (response) => {
-    alert(`Paste created! URL: http://localhost:8080/${response.hash}`);
-  };
-
-  // Define the onError handler 
-  const onError = (error) => {
-    alert('Failed to create paste: ' + error);
   };
 
   return (
@@ -105,29 +59,8 @@ function App() {
               <Preview markdown={markdown} />
             </main>
 
-            {/* Save bar with buttons contolling paste preferences*/}
-            <div className='flex flex-row gap-2 p-4 bg-gray-700'>
-              <span>Expiration Type</span>
-              <TypeButton 
-                          onSelect={handleSelectExpirationType} 
-                          selectedValue={Object.keys(expirationTypeMapping).find(key => expirationTypeMapping[key] === expirationType) || 'Select Expiration Type'}/>
-
-              <span>Expiration Value</span>
-              <ValueButton  
-                            onSelectValue={handleSelectExpirationValue}
-                            selectedValue={Object.keys(expirationValueMapping).find(key => expirationValueMapping[key] === expirationValue) || 'Select Expiration Value'}/>
-    
-              <Checkbox 
-                        checked={burnOnReading} 
-                        onChange={(e) => handleBurnOnReadingChange(e.target.checked)} />
-
-              <SaveButton 
-                          markdown={markdown} 
-                          expirationValue={expirationValue}
-                          expirationType={expirationType}
-                          burnOnReading={burnOnReading} 
-                          onSuccess={onSuccess} 
-                          onError={onError} />
+            {/* Settings & Save paste*/}
+            <div className='flex flex-row justify-center gap-2 p-4 bg-gray-700'>
               
               <ThemeSwitcher />
 
@@ -136,9 +69,9 @@ function App() {
                 Save Paste
               </button>
 
-              <SavePasteModal  isVisible={showPasteModal} 
-                               onClose={() => setShowPasteModal(false)} />
-                          
+              <PasteSettingsModal isVisible={showPasteModal} 
+                                  onClose={() => setShowPasteModal(false)}
+                                  markdown={markdown} />
             </div>
 
           </div>
@@ -146,6 +79,7 @@ function App() {
 
         {/* Route for viewing a paste by hash */}
         <Route path="/:hash" element={ <PasteView/> } />
+
       </Routes>
     </Router>
   );
