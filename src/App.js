@@ -12,7 +12,7 @@ import { expirationValueMapping } from './constants/ExpirationValueMapping.js';
 import Toolbar from './components/Editor/Toolbar.jsx';
 import { addBoldText } from './components/Editor/toolbarLogic/boldButtonFunction.ts'
 import ThemeSwitcher from './components/Buttons/ThemeSwitcher.jsx'
-import Modal from './components/Paste/PastePreferences.jsx';
+import SavePasteModal from './components/Paste/SavePasteModal.jsx';
 
 
 function App() {
@@ -23,6 +23,9 @@ function App() {
 
   // State for themes
   const [theme, setTheme] = useState('light');
+
+  // State for Paste Menu visibilitie
+  const [showPasteModal, setShowPasteModal] = useState(false);
 
   // State for the Expiration Type selection
   const [expirationType, setExpirationType] = useState('NULL');
@@ -127,7 +130,15 @@ function App() {
                           onError={onError} />
               
               <ThemeSwitcher />
-              <Modal />
+
+              <button onClick={() => setShowPasteModal(true)}
+                      className="px-4 py-2 text-sm font-medium text-white bg-blue-500 rounded-md bg-opacity-20 hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
+                Save Paste
+              </button>
+
+              <SavePasteModal  isVisible={showPasteModal} 
+                               onClose={() => setShowPasteModal(false)} />
+                          
             </div>
 
           </div>
