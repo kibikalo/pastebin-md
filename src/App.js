@@ -1,19 +1,21 @@
-import { useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import ThemeSwitcher from './components/Buttons/ThemeSwitcher.jsx';
 import Editor from './components/Editor/Editor.tsx';
 import PasteView from './components/Editor/PasteView.jsx';
 import Preview from './components/Editor/Preview.tsx';
-import Toolbar from './components/Editor/Toolbar.jsx';
-import { addBoldText } from './components/Editor/toolbarLogic/boldButtonFunction.ts';
+import Toolbar from './components/Editor/Toolbar.tsx';
+import { addBoldText } from './components/Editor/toolbarLogic/addBoldText.ts';
+import { addItalicText } from './components/Editor/toolbarLogic/addItalicText.ts';
 import PasteSettingsModal from './components/Paste/PasteSettingsModal.jsx';
+import { addHeading } from './components/Editor/toolbarLogic/addHeading.ts';
 
 
 function App() {
   // State for the markdown content
   const [markdown, setMarkdown] = useState('# [Pastebin.md]()\n ```json\n{\n "by": "kibikalo"\n }\n ```\n');
 
-  const textAreaRef = useRef<HTMLTextAreaElement>(null);
+  const textAreaRef = React.createRef(null);
 
   // State for themes
   const [theme, setTheme] = useState('light');
@@ -21,23 +23,32 @@ function App() {
   // State for Paste Menu visibilitie
   const [showPasteModal, setShowPasteModal] = useState(false);
 
-  const callback = (markdown: string) => {
+  const callback = (markdown) => {
     setMarkdown(markdown);
   }
 
   const handleBoldButton = () => {
     addBoldText(textAreaRef, markdown, setMarkdown);
     console.log('Bold executed');
+    // setMarkdown(markdown + '**bold**');
+    console.log(markdown);
   };
 
   const handleItalicButton = () => {
+    addItalicText(textAreaRef, markdown, setMarkdown);
     console.log('Italic executed');
-    // Perform Action 2
+    // setMarkdown(markdown + '*italic*');
+    console.log(markdown);
   };
 
-  const handleUnderlineButton = () => {
+  const handleStriketroughButton = () => {
     console.log('Underline executed');
     // Perform Action 3
+  };
+
+  const handleHeadingButton = (level) => {
+    addHeading(textAreaRef, markdown, setMarkdown, level);
+    console.log("Heading " + level + " executed");
   };
 
   return (
@@ -45,22 +56,23 @@ function App() {
       <Routes>
         {/* Route for creating new pastes */}
         <Route path='/' element= {
-          <div className='flex flex-col w-full h-screen bg-gray-800 text-white'>
+          <div className='flex flex-col w-full h-screen px-32 pt-8 bg-gray-800 text-white'>
 
             <Toolbar  
                       boldButtonAction={handleBoldButton}
                       italicButtonAction={handleItalicButton}
-                      underlineButtonAction={handleUnderlineButton}
+                      headingButtonAction={handleHeadingButton}
             />
       
             {/* Main content area for editor and preview */}
-            <main className='flex-grow grid grid-cols-1 sm:grid-cols-2 px-20   py-3'>
+            <main className='flex-grow grid grid-cols-1 sm:grid-cols-2 py-3'>
               <Editor markdown={markdown} setMarkdown={callback} textAreaRef={textAreaRef} />
-              <Preview markdown={markdown} />
+              <Preview markdown={markdown} /> 
             </main>
 
             {/* Settings & Save paste*/}
-            <div className='flex flex-row justify-center gap-2 p-4 bg-gray-700'>
+            <div className='flex'>
+              
               
               <ThemeSwitcher />
 
@@ -73,6 +85,7 @@ function App() {
                                   onClose={() => setShowPasteModal(false)}
                                   markdown={markdown} />
             </div>
+
 
           </div>
         }/>
