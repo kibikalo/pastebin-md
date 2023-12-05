@@ -1,14 +1,17 @@
 import React, { useRef, useState } from 'react';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
-import ThemeSwitcher from './components/Buttons/ThemeSwitcher.jsx';
 import Editor from './components/Editor/Editor.tsx';
-import PasteView from './components/Editor/PasteView.jsx';
 import Preview from './components/Editor/Preview.tsx';
 import Toolbar from './components/Editor/Toolbar.tsx';
+import PasteView from './components/Editor/PasteView.jsx';
+import ThemeSwitcher from './components/Buttons/ThemeSwitcher.jsx';
 import { addBoldText } from './components/Editor/toolbarLogic/addBoldText.ts';
 import { addItalicText } from './components/Editor/toolbarLogic/addItalicText.ts';
-import PasteSettingsModal from './components/Paste/PasteSettingsModal.jsx';
 import { addHeading } from './components/Editor/toolbarLogic/addHeading.ts';
+import { addQuote } from './components/Editor/toolbarLogic/addQuote.ts';
+import PasteSettingsModal from './components/Paste/PasteSettingsModal.jsx';
+import { addUnorderedList } from './components/Editor/toolbarLogic/addUnorderedList.ts';
+import { addOrderedList } from './components/Editor/toolbarLogic/addOrderedList.ts';
 
 
 function App() {
@@ -30,21 +33,33 @@ function App() {
   const handleBoldButton = () => {
     addBoldText(textAreaRef, markdown, setMarkdown);
     console.log('Bold executed');
-    // setMarkdown(markdown + '**bold**');
     console.log(markdown);
   };
 
   const handleItalicButton = () => {
     addItalicText(textAreaRef, markdown, setMarkdown);
     console.log('Italic executed');
-    // setMarkdown(markdown + '*italic*');
     console.log(markdown);
   };
 
   const handleStriketroughButton = () => {
     console.log('Underline executed');
-    // Perform Action 3
   };
+
+  const handleQuoteButton = () => {
+    addQuote(textAreaRef, markdown, setMarkdown);
+    console.log('Quote executed');
+  }
+
+  const handleUnorderedList = () => {
+    addUnorderedList(textAreaRef, markdown, setMarkdown);
+    console.log('Unordered list executed');
+  }
+
+  const handleOrderedList = () => {
+    addOrderedList(textAreaRef, markdown, setMarkdown);
+    console.log('Ordered list executed');
+  }
 
   const handleHeadingButton = (level) => {
     addHeading(textAreaRef, markdown, setMarkdown, level);
@@ -61,6 +76,9 @@ function App() {
             <Toolbar  
                       boldButtonAction={handleBoldButton}
                       italicButtonAction={handleItalicButton}
+                      quoteButtonAction={handleQuoteButton}
+                      unorderedListButtonAction={handleUnorderedList}
+                      orderedListButtonAction={handleOrderedList}
                       headingButtonAction={handleHeadingButton}
             />
       
