@@ -4,14 +4,19 @@ import handleEditorKeys from "./handleEditorKeys";
 interface EditorProps {
     markdown: string;
     setMarkdown: (markdown: string) => void;
+    undoStack: string[];
+    setUndoStack: (stack: string[]) => void;
+    redoStack: string[];
+    setRedoStack: (stack: string[]) => void;
+    
     textAreaRef: React.RefObject<HTMLTextAreaElement>;
 }
 
-const Editor: FunctionComponent<EditorProps> = ({ markdown, setMarkdown, textAreaRef }) => {
+const Editor: FunctionComponent<EditorProps> = ({ markdown, setMarkdown, textAreaRef, undoStack, redoStack, setUndoStack, setRedoStack}) => {
 
-    // Handles automatic continuation of List elements
+    // Handles keys
     const handleKeyDown = (event) => {
-        handleEditorKeys(event, textAreaRef, markdown, setMarkdown);
+        handleEditorKeys(event, textAreaRef, markdown, setMarkdown, undoStack, setUndoStack, redoStack, setRedoStack);
     };
 
     return (

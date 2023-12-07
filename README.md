@@ -24,11 +24,19 @@ Pastebin application with Markdown Editor. For backend i am using the [pastebin-
         - Code Block         - Ctrl + C
         - Check List         - Ctrl + T
         ***
-        - Undo               - Ctrl + Z
-        - Redo               - Ctrl + Shift + Z
+        - ~~Undo - Ctrl + Z~~
+        - ~~Redo - Ctrl + Shift + Z~~
         - Save               - Ctrl + Shift + S
+        - Tab
+        - Shift + Tab
     - Dark & Light Themes
+
+***
+
 - Security
     - Input Validation
     - API comunication using JWT tokens
+
+***
+
 - Design and Layout

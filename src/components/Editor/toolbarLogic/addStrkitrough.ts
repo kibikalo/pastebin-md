@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const addItalicText = (
+export const addStriketrough = (
   textAreaRef: React.RefObject<HTMLTextAreaElement>,
   markdown: string,
   setMarkdown: (value: string) => void
@@ -12,8 +12,8 @@ export const addItalicText = (
     const afterText = markdown.substring(selectionEnd);
 
     const newText = selectedText
-      ? `${beforeText}*${selectedText}*${afterText}`
-      : `${beforeText}**${afterText}`;
+      ? `${beforeText}~${selectedText}~${afterText}`
+      : `${beforeText}~~${afterText}`;
     setMarkdown(newText);
 
     textAreaRef.current.focus();

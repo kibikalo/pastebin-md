@@ -19,18 +19,18 @@ const ValueButton = ( {onSelectValue, selectedValue} ) => {
                 onClick={() => setIsOpen(!isOpen)}
             >
                 {selectedValue}
-                <svg className="ml-2 -mr-1 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <svg className="w-5 h-5 ml-2 -mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                     <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
                 </svg>
             </button>
 
             {isOpen && (
-                <div className="absolute right-0 z-10 mt-2 w-full origin-top-right rounded-md bg-blue-900 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"> 
+                <div className="absolute right-0 z-10 w-full mt-2 origin-top-right bg-blue-900 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"> 
                     <div className="py-1 overflow-y-auto scrollbar-thin scrollbar-thumb-blue-700 scrollbar-track-blue-800" style={{ maxHeight: '260px' }}>
                         {['0', '5', '10', '15', '20', '25', '30', '35', '40', '45', '50', '55', '60'].map((displayValue) => (
                             <div 
                                 key={displayValue}
-                                className="text-gray-200 block px-4 py-2 text-sm"
+                                className="block px-4 py-2 text-sm text-gray-200"
                                 onClick={() => {
                                     handleSelect(displayValue);
                                 }}

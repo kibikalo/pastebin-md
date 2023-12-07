@@ -12,6 +12,7 @@ import { addQuote } from './components/Editor/toolbarLogic/addQuote.ts';
 import PasteSettingsModal from './components/Paste/PasteSettingsModal.jsx';
 import { addUnorderedList } from './components/Editor/toolbarLogic/addUnorderedList.ts';
 import { addOrderedList } from './components/Editor/toolbarLogic/addOrderedList.ts';
+import { addStriketrough } from './components/Editor/toolbarLogic/addStrkitrough.ts';
 
 
 function App() {
@@ -20,8 +21,10 @@ function App() {
 
   const textAreaRef = React.createRef(null);
 
-  // State for themes
-  const [theme, setTheme] = useState('light');
+  // Undo / Redo feature
+  const [content, setContent] = useState('');
+  const [undoStack, setUndoStack] = useState([]);
+  const [redoStack, setRedoStack] = useState([]);
 
   // State for Paste Menu visibilitie
   const [showPasteModal, setShowPasteModal] = useState(false);
@@ -29,6 +32,17 @@ function App() {
   const callback = (markdown) => {
     setMarkdown(markdown);
   }
+
+  // Function to handle changes in the editor content
+  const handleChange = (event) => {
+    const newContent = event.target.value;
+    // Push the current content to the undo stack
+    setUndoStack((prevStack) => [...prevStack, content]);
+    // Clear the redo stack
+    setRedoStack([]);
+    // Update the content
+    setMarkdown(newContent);
+  };
 
   const handleBoldButton = () => {
     addBoldText(textAreaRef, markdown, setMarkdown);
@@ -39,10 +53,10 @@ function App() {
   const handleItalicButton = () => {
     addItalicText(textAreaRef, markdown, setMarkdown);
     console.log('Italic executed');
-    console.log(markdown);
   };
 
   const handleStriketroughButton = () => {
+    addStriketrough(textAreaRef, markdown, setMarkdown);
     console.log('Underline executed');
   };
 
@@ -71,11 +85,12 @@ function App() {
       <Routes>
         {/* Route for creating new pastes */}
         <Route path='/' element= {
-          <div className='flex flex-col w-full h-screen px-32 pt-8 bg-gray-800 text-white'>
+          <div className='flex flex-col w-full h-screen px-32 pt-8 text-white bg-gray-800'>
 
             <Toolbar  
                       boldButtonAction={handleBoldButton}
                       italicButtonAction={handleItalicButton}
+                      striketroughAction={handleStriketroughButton}
                       quoteButtonAction={handleQuoteButton}
                       unorderedListButtonAction={handleUnorderedList}
                       orderedListButtonAction={handleOrderedList}
@@ -83,8 +98,18 @@ function App() {
             />
       
             {/* Main content area for editor and preview */}
-            <main className='flex-grow grid grid-cols-1 sm:grid-cols-2 py-3'>
-              <Editor markdown={markdown} setMarkdown={callback} textAreaRef={textAreaRef} />
+            <main className='grid flex-grow grid-cols-1 py-3 sm:grid-cols-2'>
+              <Editor markdown={markdown} 
+                      setMarkdown={callback} 
+                      textAreaRef={textAreaRef}
+                      // content={content}
+                      // setContent={setContent} 
+                      undoStack={undoStack}
+                      setUndoStack={setUndoStack}
+                      redoStack={redoStack}
+                      setRedoStack={setRedoStack}
+              />
+
               <Preview markdown={markdown} /> 
             </main>
 

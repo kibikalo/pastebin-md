@@ -9,7 +9,7 @@ const BurnOnReadingComponent = ({ checked, onChange }) => {
         type="checkbox"
         checked={checked}
         onChange={onChange}
-        className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300"
+        className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded"
       />
       <label htmlFor="default-checkbox" className="text-sm font-medium text-white dark:text-gray-300">
         Burn on reading

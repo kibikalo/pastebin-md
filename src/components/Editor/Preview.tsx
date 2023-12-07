@@ -3,6 +3,7 @@ import {marked, parse} from 'marked';
 import DOMPurify from 'dompurify';
 import hljs from "highlight.js"
 import 'highlight.js/styles/tokyo-night-dark.css'
+// import 'highlight.js/styles/atom-one-dark.css'
 
 interface PreviewProps {
     markdown: string;
@@ -28,9 +29,9 @@ export default function Preview({markdown} : PreviewProps) {
     const parsed = DOMPurify.sanitize(marked.parse(markdown));
 
     return (
-    <div className="box-border rounded-r-[20px] bg-gray-700">
+    <div className="rounded-r-[20px] bg-gray-700">
         <div 
-            className="p-6 overflow-y-auto prose prose-invert prose-a:text-pink-600 box-border rounded-r-[20px] scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-600 bg-gray-700"
+            className="p-6 prose prose-invert prose-a:text-pink-600 rounded-r-[20px] scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-600 bg-gray-700"
             dangerouslySetInnerHTML={{__html: parsed }}
         />
     </div>

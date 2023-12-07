@@ -10,20 +10,28 @@ export const addBoldText = (
       const { selectionStart, selectionEnd } = textAreaRef.current;
       const beforeText = markdown.substring(0, selectionStart);
       const afterText = markdown.substring(selectionEnd);
+      console.log(`Selection start: ${selectionStart}, end: ${selectionEnd}`); // Log selection positions
+
 
       let newText;
       let newCursorPos;
 
     if (selectionStart === selectionEnd) {
       // No text selected, insert '**' and place cursor in the middle
+      console.log("No text selected"); // Log when no text is selected
       newText = `${beforeText}****${afterText}`;
-      newCursorPos = beforeText + 2;
+      newCursorPos = selectionStart + 2;
+      console.log(`New cursor position: ${newCursorPos}`); // Log new cursor position
+
     } else {
       // Text selected, wrap it in '**'
       const selectedText = markdown.substring(selectionStart, selectionEnd);
       newText = `${beforeText}**${selectedText}**${afterText}`;
-      newCursorPos = selectionEnd + 2; // Adjust for selection length
+      newCursorPos = selectionEnd + 4; // Adjust for selection length
     }
+
+    console.log(newCursorPos);
+    
 
     setMarkdown(newText);
 
@@ -33,6 +41,6 @@ export const addBoldText = (
         textAreaRef.current.focus();
         textAreaRef.current.setSelectionRange(newCursorPos, newCursorPos);
       }
-    }, 0);
-    }
+    }, 10);
+  }
 };
