@@ -6,10 +6,10 @@ Pastebin application with Markdown Editor. For backend i am using the [pastebin-
     - React.js
     - Tailwind CSS
     - Marked.js
+    - Highlight.js
 
-***
 
-**There's still a lot of work to be done here, so that's my road map for the next weeks:**
+## Road map:
 
 - Features
     - Toolbar features & Hot Keys
