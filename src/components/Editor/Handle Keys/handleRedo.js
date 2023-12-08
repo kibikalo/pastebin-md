@@ -1,4 +1,4 @@
-const performRedo = (content, setContent, redoStack, setUndoStack) => {
+export const handleRedo = (content, setContent, redoStack, setUndoStack) => {
     if (Array.isArray(redoStack) && redoStack.length > 0) {
         // Pop the last state from the redo stack
         const nextState = redoStack.pop();
@@ -9,6 +9,4 @@ const performRedo = (content, setContent, redoStack, setUndoStack) => {
         // Set the content to the next state
         setContent(nextState);
     }
-  };
-  
-  export default performRedo;
+};

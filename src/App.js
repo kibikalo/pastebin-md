@@ -5,14 +5,14 @@ import Preview from './components/Editor/Preview.tsx';
 import Toolbar from './components/Editor/Toolbar.tsx';
 import PasteView from './components/Editor/PasteView.jsx';
 import ThemeSwitcher from './components/Buttons/ThemeSwitcher.jsx';
-import { addBoldText } from './components/Editor/toolbarLogic/addBoldText.ts';
-import { addItalicText } from './components/Editor/toolbarLogic/addItalicText.ts';
-import { addHeading } from './components/Editor/toolbarLogic/addHeading.ts';
-import { addQuote } from './components/Editor/toolbarLogic/addQuote.ts';
+import { addBoldText } from './components/Editor/Toolbar/addBoldText.ts';
+import { addItalicText } from './components/Editor/Toolbar/addItalicText.ts';
+import { addHeading } from './components/Editor/Toolbar/addHeading.ts';
+import { addQuote } from './components/Editor/Toolbar/addQuote.ts';
 import PasteSettingsModal from './components/Paste/PasteSettingsModal.jsx';
-import { addUnorderedList } from './components/Editor/toolbarLogic/addUnorderedList.ts';
-import { addOrderedList } from './components/Editor/toolbarLogic/addOrderedList.ts';
-import { addStriketrough } from './components/Editor/toolbarLogic/addStrkitrough.ts';
+import { addUnorderedList } from './components/Editor/Toolbar/addUnorderedList.ts';
+import { addOrderedList } from './components/Editor/Toolbar/addOrderedList.ts';
+import { addStriketrough } from './components/Editor/Toolbar/addStrkitrough.ts';
 
 
 function App() {
@@ -22,7 +22,6 @@ function App() {
   const textAreaRef = React.createRef(null);
 
   // Undo / Redo feature
-  const [content, setContent] = useState('');
   const [undoStack, setUndoStack] = useState([]);
   const [redoStack, setRedoStack] = useState([]);
 
@@ -37,48 +36,27 @@ function App() {
   const handleChange = (event) => {
     const newContent = event.target.value;
     // Push the current content to the undo stack
-    setUndoStack((prevStack) => [...prevStack, content]);
+    setUndoStack((prevStack) => [...prevStack, markdown]);
     // Clear the redo stack
     setRedoStack([]);
     // Update the content
     setMarkdown(newContent);
   };
 
-  const handleBoldButton = () => {
-    addBoldText(textAreaRef, markdown, setMarkdown);
-    console.log('Bold executed');
-    console.log(markdown);
-  };
+  // Formatting features handlers
+  const handleBoldButton = () => { addBoldText(textAreaRef, markdown, setMarkdown); };
 
-  const handleItalicButton = () => {
-    addItalicText(textAreaRef, markdown, setMarkdown);
-    console.log('Italic executed');
-  };
+  const handleItalicButton = () => { addItalicText(textAreaRef, markdown, setMarkdown); }
 
-  const handleStriketroughButton = () => {
-    addStriketrough(textAreaRef, markdown, setMarkdown);
-    console.log('Underline executed');
-  };
+  const handleStriketroughButton = () => { addStriketrough(textAreaRef, markdown, setMarkdown); }
 
-  const handleQuoteButton = () => {
-    addQuote(textAreaRef, markdown, setMarkdown);
-    console.log('Quote executed');
-  }
+  const handleQuoteButton = () => { addQuote(textAreaRef, markdown, setMarkdown); }
 
-  const handleUnorderedList = () => {
-    addUnorderedList(textAreaRef, markdown, setMarkdown);
-    console.log('Unordered list executed');
-  }
+  const handleUnorderedList = () => { addUnorderedList(textAreaRef, markdown, setMarkdown); }
 
-  const handleOrderedList = () => {
-    addOrderedList(textAreaRef, markdown, setMarkdown);
-    console.log('Ordered list executed');
-  }
+  const handleOrderedList = () => { addOrderedList(textAreaRef, markdown, setMarkdown); }
 
-  const handleHeadingButton = (level) => {
-    addHeading(textAreaRef, markdown, setMarkdown, level);
-    console.log("Heading " + level + " executed");
-  };
+  const handleHeadingButton = (level) => { addHeading(textAreaRef, markdown, setMarkdown, level); }
 
   return (
     <Router>
@@ -102,8 +80,6 @@ function App() {
               <Editor markdown={markdown} 
                       setMarkdown={callback} 
                       textAreaRef={textAreaRef}
-                      // content={content}
-                      // setContent={setContent} 
                       undoStack={undoStack}
                       setUndoStack={setUndoStack}
                       redoStack={redoStack}

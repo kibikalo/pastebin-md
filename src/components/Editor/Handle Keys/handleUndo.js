@@ -1,4 +1,4 @@
-const performUndo = (content, setContent, undoStack, setUndoStack, setRedoStack) => {
+export const handleUndo = (content, setContent, undoStack, setUndoStack, setRedoStack) => {
     if (Array.isArray(undoStack) && undoStack.length > 0) {
         // Pop the last state from the undo stack
         const prevState = undoStack.pop();
@@ -13,5 +13,3 @@ const performUndo = (content, setContent, undoStack, setUndoStack, setRedoStack)
         setUndoStack(undoStack.slice(0, -1));
     }
 };
-
-export default performUndo;

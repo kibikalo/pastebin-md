@@ -1,13 +1,12 @@
 # [Pastebin.md](https://github.com/kibikalo/pastebin-md)
 
-Pastebin application with Markdown Editor. For backend i am using the [pastebin-api](https://github.com/kibikalo/pastebin-api) that I previously wrote in Java.
+Pastebin application with Markdown Editor. For the backend i am using [pastebin-api](https://github.com/kibikalo/pastebin-api) that i previously wrote in Java.
 
 ## Tech Stack
     - React.js
     - Tailwind CSS
     - Marked.js
-    - Highlight.js
-
+    - Highlight.js 
 
 ## Road map:
 
@@ -24,11 +23,10 @@ Pastebin application with Markdown Editor. For backend i am using the [pastebin-
         - Code Block         - Ctrl + C
         - Check List         - Ctrl + T
         ***
-        - ~~Undo - Ctrl + Z~~
-        - ~~Redo - Ctrl + Shift + Z~~
-        - Save               - Ctrl + Shift + S
-        - Tab
-        - Shift + Tab
+        - ~~Undo~~ - Ctrl + Z
+        - ~~Redo~~ - Ctrl + Shift + Z
+        - Save   - Ctrl + Shift + S
+        - Tab / Shift + Tab
     - Dark & Light Themes
 
 ***

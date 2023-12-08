@@ -1,5 +1,5 @@
 import React, { FunctionComponent, KeyboardEvent } from "react";
-import handleEditorKeys from "./handleEditorKeys";
+import handleEditorKeys from "./Handle Keys/handleEditorKeys";
 
 interface EditorProps {
     markdown: string;
