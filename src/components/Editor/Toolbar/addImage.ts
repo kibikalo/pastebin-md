@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-export const addItalicText = (
+export const addImage = (
   textAreaRef: React.RefObject<HTMLTextAreaElement>,
   markdown: string,
   setMarkdown: (value: string) => void,
@@ -15,14 +15,14 @@ export const addItalicText = (
     let newCursorPos;
 
     if (selectionStart === selectionEnd) {
-      // No text selected
-      newText = `${beforeText}**${afterText}`;
-      newCursorPos = selectionStart + 1;
+        // No text selected
+        newText = `${beforeText}![]()${afterText}`;
+        newCursorPos = selectionStart + 4;
     } else {
-      // Text Selected
-      const selectedText = markdown.substring(selectionStart, selectionEnd);
-      newText = `${beforeText}*${selectedText}*${afterText}`;
-      newCursorPos = selectionEnd + 2;
+        // Text selected
+        const selectedText = markdown.substring(selectionStart, selectionEnd);
+        newText = `${beforeText}![](${selectedText})${afterText}`;
+        newCursorPos = selectionEnd + 4;
     }
 
     setMarkdown(newText);

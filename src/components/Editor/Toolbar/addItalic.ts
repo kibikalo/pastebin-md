@@ -1,7 +1,6 @@
-import React from "react";
+import React from 'react';
 
-// Function to wrap selected text with bold markdown or insert bold markdown
-export const addBoldText = (
+export const addItalic = (
   textAreaRef: React.RefObject<HTMLTextAreaElement>,
   markdown: string,
   setMarkdown: (value: string) => void,
@@ -16,14 +15,14 @@ export const addBoldText = (
     let newCursorPos;
 
     if (selectionStart === selectionEnd) {
-      // No text selected, insert '****' and place cursor in the middle
-      newText = `${beforeText}****${afterText}`;
-      newCursorPos = selectionStart + 2; // Position cursor between the '**'
+      // No text selected
+      newText = `${beforeText}**${afterText}`;
+      newCursorPos = selectionStart + 1;
     } else {
-      // Text selected, wrap it in '**'
+      // Text Selected
       const selectedText = markdown.substring(selectionStart, selectionEnd);
-      newText = `${beforeText}**${selectedText}**${afterText}`;
-      newCursorPos = selectionEnd + 4; // Position cursor after the closing '**'
+      newText = `${beforeText}*${selectedText}*${afterText}`;
+      newCursorPos = selectionEnd + 2;
     }
 
     setMarkdown(newText);

@@ -9,9 +9,11 @@ interface ToolbarProps {
   headingButtonAction: (level: number) => void;
   unorderedListButtonAction: () => void;
   orderedListButtonAction: () => void;
+  insertLinkButtonAction: () => void;
+  insertImageButtonAction: () => void;
 }
 
-const Toolbar: React.FC<ToolbarProps> = ({ boldButtonAction, italicButtonAction, striketroughAction, quoteButtonAction, codeButtonAction, headingButtonAction, unorderedListButtonAction, orderedListButtonAction }) => {
+const Toolbar: React.FC<ToolbarProps> = ({ boldButtonAction, italicButtonAction, striketroughAction, quoteButtonAction, codeButtonAction, headingButtonAction, unorderedListButtonAction, orderedListButtonAction, insertLinkButtonAction, insertImageButtonAction }) => {
 
 
   return (
@@ -57,6 +59,18 @@ const Toolbar: React.FC<ToolbarProps> = ({ boldButtonAction, italicButtonAction,
                 className="w-8 p-1 bg-gray-700 rounded toolbar-button-ordered-list hover:bg-gray-600"
                 title='Ordered List  (Ctrl + O)'>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0z"></path><path d="M8 4H21V6H8V4ZM5 3V6H6V7H3V6H4V4H3V3H5ZM3 14V11.5H5V11H3V10H6V12.5H4V13H6V14H3ZM5 19.5H3V18.5H5V18H3V17H6V21H3V20H5V19.5ZM8 11H21V13H8V11ZM8 18H21V20H8V18Z"></path></svg>
+      </button>
+
+      <button   onClick={insertLinkButtonAction}
+                className="w-8 p-1 bg-gray-700 rounded toolbar-button-insert-link hover:bg-gray-600"
+                title='Insert Link  (Ctrl + L)'>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18.3638 15.5355L16.9496 14.1213L18.3638 12.7071C20.3164 10.7545 20.3164 7.58866 18.3638 5.63604C16.4112 3.68341 13.2453 3.68341 11.2927 5.63604L9.87849 7.05025L8.46428 5.63604L9.87849 4.22182C12.6122 1.48815 17.0443 1.48815 19.778 4.22182C22.5117 6.95549 22.5117 11.3876 19.778 14.1213L18.3638 15.5355ZM15.5353 18.364L14.1211 19.7782C11.3875 22.5118 6.95531 22.5118 4.22164 19.7782C1.48797 17.0445 1.48797 12.6123 4.22164 9.87868L5.63585 8.46446L7.05007 9.87868L5.63585 11.2929C3.68323 13.2455 3.68323 16.4113 5.63585 18.364C7.58847 20.3166 10.7543 20.3166 12.7069 18.364L14.1211 16.9497L15.5353 18.364ZM14.8282 7.75736L16.2425 9.17157L9.17139 16.2426L7.75717 14.8284L14.8282 7.75736Z"></path></svg>
+      </button>
+
+      <button   onClick={insertImageButtonAction}
+                className="w-8 p-1 bg-gray-700 rounded toolbar-button-insert-image hover:bg-gray-600"
+                title='Insert Image  (Ctrl + P)'>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M2.9918 21C2.44405 21 2 20.5551 2 20.0066V3.9934C2 3.44476 2.45531 3 2.9918 3H21.0082C21.556 3 22 3.44495 22 3.9934V20.0066C22 20.5552 21.5447 21 21.0082 21H2.9918ZM20 15V5H4V19L14 9L20 15ZM20 17.8284L14 11.8284L6.82843 19H20V17.8284ZM8 11C6.89543 11 6 10.1046 6 9C6 7.89543 6.89543 7 8 7C9.10457 7 10 7.89543 10 9C10 10.1046 9.10457 11 8 11Z"></path></svg>
       </button>
 
       <button  onClick={() => headingButtonAction(1)}

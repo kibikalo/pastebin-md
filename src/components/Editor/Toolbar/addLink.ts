@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-export const addCodeBlock = (
+export const addLink = (
   textAreaRef: React.RefObject<HTMLTextAreaElement>,
   markdown: string,
   setMarkdown: (value: string) => void,
@@ -15,14 +15,14 @@ export const addCodeBlock = (
     let newCursorPos;
 
     if (selectionStart === selectionEnd) {
-      // No text selected
-      newText = `${beforeText}\n\`\`\`\n\n\`\`\`${afterText}`;
-      newCursorPos = selectionStart + 5;
+        // No text selected
+        newText = `${beforeText}[]()${afterText}`;
+        newCursorPos = selectionStart + 1;
     } else {
-      // Text selected
-      const selectedText = markdown.substring(selectionStart, selectionEnd);
-      newText = `${beforeText}\n\`\`\`\n${selectedText}\n\`\`\`${afterText}`;
-      newCursorPos = selectionEnd + 6;
+        // Text selected
+        const selectedText = markdown.substring(selectionStart, selectionEnd);
+        newText = `${beforeText}[${selectedText}]()${afterText}`;
+        newCursorPos = selectionEnd + 3;
     }
 
     setMarkdown(newText);

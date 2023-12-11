@@ -5,8 +5,8 @@ import Preview from './components/Editor/Preview.tsx';
 import Toolbar from './components/Editor/Toolbar.tsx';
 import PasteView from './components/Editor/PasteView.jsx';
 import ThemeSwitcher from './components/Buttons/ThemeSwitcher.jsx';
-import { addBoldText } from './components/Editor/Toolbar/addBoldText.ts';
-import { addItalicText } from './components/Editor/Toolbar/addItalicText.ts';
+import { addBold } from './components/Editor/Toolbar/addBold.ts';
+import { addItalic } from './components/Editor/Toolbar/addItalic.ts';
 import { addHeading } from './components/Editor/Toolbar/addHeading.ts';
 import { addQuote } from './components/Editor/Toolbar/addQuote.ts';
 import PasteSettingsModal from './components/Paste/PasteSettingsModal.jsx';
@@ -14,11 +14,13 @@ import { addUnorderedList } from './components/Editor/Toolbar/addUnorderedList.t
 import { addOrderedList } from './components/Editor/Toolbar/addOrderedList.ts';
 import { addStriketrough } from './components/Editor/Toolbar/addStrkitrough.ts';
 import { addCodeBlock } from './components/Editor/Toolbar/addCodeBlock.ts';
+import { addLink } from './components/Editor/Toolbar/addLink.ts';
+import { addImage } from './components/Editor/Toolbar/addImage.ts';
 
 
 function App() {
   // State for the markdown content
-  const [markdown, setMarkdown] = useState('# [Pastebin.md]()\n ```json\n{\n "by": "kibikalo"\n }\n ```\n');
+  const [markdown, setMarkdown] = useState("");
 
   const textAreaRef = React.createRef(null);
   const [newCursorPos, setNewCursorPos] = useState(null);
@@ -46,9 +48,9 @@ function App() {
   };
 
   // Formatting features handlers
-  const handleBoldButton = () => { addBoldText(textAreaRef, markdown, setMarkdown, setNewCursorPos); };
+  const handleBoldButton = () => { addBold(textAreaRef, markdown, setMarkdown, setNewCursorPos); };
 
-  const handleItalicButton = () => { addItalicText(textAreaRef, markdown, setMarkdown, setNewCursorPos); }
+  const handleItalicButton = () => { addItalic(textAreaRef, markdown, setMarkdown, setNewCursorPos); }
 
   const handleStriketroughButton = () => { addStriketrough(textAreaRef, markdown, setMarkdown, setNewCursorPos); }
 
@@ -61,6 +63,10 @@ function App() {
   const handleOrderedList = () => { addOrderedList(textAreaRef, markdown, setMarkdown); }
 
   const handleHeadingButton = (level) => { addHeading(textAreaRef, markdown, setMarkdown, level); }
+
+  const handleInsertLink = () => { addLink(textAreaRef, markdown, setMarkdown, setNewCursorPos) }
+
+  const hdndaleInsertImage = () => { addImage(textAreaRef, markdown, setMarkdown, setNewCursorPos) }
 
   return (
     <Router>
@@ -78,6 +84,8 @@ function App() {
                       unorderedListButtonAction={handleUnorderedList}
                       orderedListButtonAction={handleOrderedList}
                       headingButtonAction={handleHeadingButton}
+                      insertLinkButtonAction={handleInsertLink}
+                      insertImageButtonAction={hdndaleInsertImage}
             />
       
             {/* Main content area for editor and preview */}

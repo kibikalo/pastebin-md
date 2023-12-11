@@ -1,5 +1,5 @@
-import { addBoldText } from '../Toolbar/addBoldText.ts';
-import { addItalicText } from '../Toolbar/addItalicText.ts';
+import { addBold } from '../Toolbar/addBold.ts';
+import { addItalic } from '../Toolbar/addItalic.ts';
 import { addQuote } from '../Toolbar/addQuote.ts';
 import { addUnorderedList } from '../Toolbar/addUnorderedList.ts';
 import { addOrderedList } from '../Toolbar/addOrderedList.ts';
@@ -11,6 +11,8 @@ import { handleTab } from './handleTab.js';
 import { handleShiftTab } from './handleShiftTab.js';
 import { handleEnter } from './handleEnter.js'
 import { addCodeBlock } from '../Toolbar/addCodeBlock.ts';
+import { addLink } from '../Toolbar/addLink.ts';
+import { addImage } from '../Toolbar/addImage.ts';
 
 const handleEditorKeys = (event, textAreaRef, markdown, setMarkdown, undoStack, redoStack, setUndoStack, setRedoStack, setNewCursorPos) => {
 
@@ -19,11 +21,11 @@ const handleEditorKeys = (event, textAreaRef, markdown, setMarkdown, undoStack, 
         switch (event.key.toLowerCase()) {
             case 'b': // Ctrl + B
                 event.preventDefault();
-                addBoldText(textAreaRef, markdown, setMarkdown, setNewCursorPos);
+                addBold(textAreaRef, markdown, setMarkdown, setNewCursorPos);
                 break;
             case 'i': // Ctrl + I
                 event.preventDefault();
-                addItalicText(textAreaRef, markdown, setMarkdown, setNewCursorPos);
+                addItalic(textAreaRef, markdown, setMarkdown, setNewCursorPos);
                 break;
             case 's': // Ctrl + S
                 event.preventDefault();
@@ -44,6 +46,14 @@ const handleEditorKeys = (event, textAreaRef, markdown, setMarkdown, undoStack, 
             case 'r': // Ctrl + R
                 event.preventDefault();
                 addCodeBlock(textAreaRef, markdown, setMarkdown, setNewCursorPos);
+                break;
+            case 'l': // Ctrl + L
+                event.preventDefault();
+                addLink(textAreaRef, markdown, setMarkdown, setNewCursorPos);
+                break;
+            case 'p': // Ctrl + P
+                event.preventDefault();
+                addImage(textAreaRef, markdown, setMarkdown, setNewCursorPos);
                 break;
             default:
                 break;
