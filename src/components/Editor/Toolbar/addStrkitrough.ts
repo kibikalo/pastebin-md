@@ -3,21 +3,29 @@ import React from 'react';
 export const addStriketrough = (
   textAreaRef: React.RefObject<HTMLTextAreaElement>,
   markdown: string,
-  setMarkdown: (value: string) => void
+  setMarkdown: (value: string) => void,
+  setNewCursorPos: (value: number) => void
 ) => {
   if (textAreaRef.current) {
     const { selectionStart, selectionEnd } = textAreaRef.current;
     const beforeText = markdown.substring(0, selectionStart);
-    const selectedText = markdown.substring(selectionStart, selectionEnd);
     const afterText = markdown.substring(selectionEnd);
 
-    const newText = selectedText
-      ? `${beforeText}~${selectedText}~${afterText}`
-      : `${beforeText}~~${afterText}`;
-    setMarkdown(newText);
+    let newText;
+    let newCursorPos;
 
-    textAreaRef.current.focus();
-    const newCursorPos = selectionStart + (selectedText ? 2 : 1);
-    textAreaRef.current.setSelectionRange(newCursorPos, newCursorPos);
+    if (selectionStart === selectionEnd) {
+      // No text selected
+      newText = `${beforeText}~~${afterText}`;
+      newCursorPos = selectionStart + 1;
+    } else {
+      // Text Selected
+      const selectedText = markdown.substring(selectionStart, selectionEnd);
+      newText = `${beforeText}~${selectedText}~${afterText}`;
+      newCursorPos = selectionEnd + 2;
+    }
+
+    setMarkdown(newText);
+    setNewCursorPos(newCursorPos);
   }
 };

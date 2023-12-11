@@ -4,10 +4,11 @@ import React from "react";
 export const addBoldText = (
   textAreaRef: React.RefObject<HTMLTextAreaElement>,
   markdown: string,
-  setMarkdown: (value: string) => void
+  setMarkdown: (value: string) => void,
+  setNewCursorPos: (value: number) => void
 ) => {
-    if (textAreaRef.current) {
-      const { selectionStart, selectionEnd } = textAreaRef.current;
+  if (textAreaRef.current) {
+    const { selectionStart, selectionEnd } = textAreaRef.current;
     const beforeText = markdown.substring(0, selectionStart);
     const afterText = markdown.substring(selectionEnd);
 
@@ -15,7 +16,7 @@ export const addBoldText = (
     let newCursorPos;
 
     if (selectionStart === selectionEnd) {
-      // No text selected, insert '**' and place cursor in the middle
+      // No text selected, insert '****' and place cursor in the middle
       newText = `${beforeText}****${afterText}`;
       newCursorPos = selectionStart + 2; // Position cursor between the '**'
     } else {
@@ -26,9 +27,6 @@ export const addBoldText = (
     }
 
     setMarkdown(newText);
-
-    // Update the cursor position immediately
-    textAreaRef.current.focus();
-    textAreaRef.current.setSelectionRange(newCursorPos, newCursorPos);
+    setNewCursorPos(newCursorPos);
   }
 };

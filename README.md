@@ -13,15 +13,17 @@ Pastebin application with Markdown Editor. For the backend i am using [pastebin-
 - Features
     - Toolbar features & Hot Keys
         - ~~Heading~~        - Ctrl + (1 - 6)
+        - ~~Bold               - Ctrl + B~~
+        - ~~Italic             - Ctrl + I~~ 
+        - ~~Striketrough       - Ctrl + S~~
         - ~~Quote~~          - Ctrl + Q
+        - ~~Code Block         - Ctrl + C~~
         - ~~Unordered List~~ - Ctrl + U
         - ~~Ordered List~~   - Ctrl + O
         ***
-        - Bold               - Ctrl + B
-        - Italic             - Ctrl + I
-        - Striketrough       - Ctrl + S
-        - Code Block         - Ctrl + C
         - Check List         - Ctrl + T
+        - Insert Link        - Ctrl + L
+        - Insert Image       - Ctrl + P
         ***
         - ~~Undo~~ - Ctrl + Z
         - ~~Redo~~ - Ctrl + Shift + Z

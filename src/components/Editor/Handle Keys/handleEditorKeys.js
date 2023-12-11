@@ -10,19 +10,24 @@ import { handleRedo } from './handleRedo.js';
 import { handleTab } from './handleTab.js';
 import { handleShiftTab } from './handleShiftTab.js';
 import { handleEnter } from './handleEnter.js'
+import { addCodeBlock } from '../Toolbar/addCodeBlock.ts';
 
-const handleEditorKeys = (event, textAreaRef, markdown, setMarkdown, undoStack, redoStack, setUndoStack, setRedoStack) => {
+const handleEditorKeys = (event, textAreaRef, markdown, setMarkdown, undoStack, redoStack, setUndoStack, setRedoStack, setNewCursorPos) => {
 
     // Formatting hot keys handling 
     if (event.ctrlKey || event.metaKey) { // metaKey is for MacOS
         switch (event.key.toLowerCase()) {
             case 'b': // Ctrl + B
                 event.preventDefault();
-                addBoldText(textAreaRef, markdown, setMarkdown);
+                addBoldText(textAreaRef, markdown, setMarkdown, setNewCursorPos);
                 break;
             case 'i': // Ctrl + I
                 event.preventDefault();
-                addItalicText(textAreaRef, markdown, setMarkdown);
+                addItalicText(textAreaRef, markdown, setMarkdown, setNewCursorPos);
+                break;
+            case 's': // Ctrl + S
+                event.preventDefault();
+                addStriketrough(textAreaRef, markdown, setMarkdown, setNewCursorPos);
                 break;
             case 'u': // Ctrl + U
                 event.preventDefault();
@@ -36,9 +41,9 @@ const handleEditorKeys = (event, textAreaRef, markdown, setMarkdown, undoStack, 
                 event.preventDefault();
                 addQuote(textAreaRef, markdown, setMarkdown);
                 break;
-            case 's': // Ctrl + S
+            case 'r': // Ctrl + R
                 event.preventDefault();
-                addStriketrough(textAreaRef, markdown, setMarkdown);
+                addCodeBlock(textAreaRef, markdown, setMarkdown, setNewCursorPos);
                 break;
             default:
                 break;

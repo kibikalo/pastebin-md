@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import Editor from './components/Editor/Editor.tsx';
 import Preview from './components/Editor/Preview.tsx';
@@ -13,6 +13,7 @@ import PasteSettingsModal from './components/Paste/PasteSettingsModal.jsx';
 import { addUnorderedList } from './components/Editor/Toolbar/addUnorderedList.ts';
 import { addOrderedList } from './components/Editor/Toolbar/addOrderedList.ts';
 import { addStriketrough } from './components/Editor/Toolbar/addStrkitrough.ts';
+import { addCodeBlock } from './components/Editor/Toolbar/addCodeBlock.ts';
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
   const [markdown, setMarkdown] = useState('# [Pastebin.md]()\n ```json\n{\n "by": "kibikalo"\n }\n ```\n');
 
   const textAreaRef = React.createRef(null);
+  const [newCursorPos, setNewCursorPos] = useState(null);
 
   // Undo / Redo feature
   const [undoStack, setUndoStack] = useState([]);
@@ -44,13 +46,15 @@ function App() {
   };
 
   // Formatting features handlers
-  const handleBoldButton = () => { addBoldText(textAreaRef, markdown, setMarkdown); };
+  const handleBoldButton = () => { addBoldText(textAreaRef, markdown, setMarkdown, setNewCursorPos); };
 
-  const handleItalicButton = () => { addItalicText(textAreaRef, markdown, setMarkdown); }
+  const handleItalicButton = () => { addItalicText(textAreaRef, markdown, setMarkdown, setNewCursorPos); }
 
-  const handleStriketroughButton = () => { addStriketrough(textAreaRef, markdown, setMarkdown); }
+  const handleStriketroughButton = () => { addStriketrough(textAreaRef, markdown, setMarkdown, setNewCursorPos); }
 
   const handleQuoteButton = () => { addQuote(textAreaRef, markdown, setMarkdown); }
+
+  const handleCodeButton = () => { addCodeBlock(textAreaRef, markdown, setMarkdown, setNewCursorPos) }
 
   const handleUnorderedList = () => { addUnorderedList(textAreaRef, markdown, setMarkdown); }
 
@@ -70,6 +74,7 @@ function App() {
                       italicButtonAction={handleItalicButton}
                       striketroughAction={handleStriketroughButton}
                       quoteButtonAction={handleQuoteButton}
+                      codeButtonAction={handleCodeButton}
                       unorderedListButtonAction={handleUnorderedList}
                       orderedListButtonAction={handleOrderedList}
                       headingButtonAction={handleHeadingButton}
@@ -84,6 +89,8 @@ function App() {
                       setUndoStack={setUndoStack}
                       redoStack={redoStack}
                       setRedoStack={setRedoStack}
+                      newCursorPos={newCursorPos}
+                      setNewCursorPos={setNewCursorPos}
               />
 
               <Preview markdown={markdown} /> 

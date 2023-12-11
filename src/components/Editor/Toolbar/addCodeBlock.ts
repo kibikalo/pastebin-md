@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const addItalicText = (
+export const addCodeBlock = (
   textAreaRef: React.RefObject<HTMLTextAreaElement>,
   markdown: string,
   setMarkdown: (value: string) => void,
@@ -15,14 +15,14 @@ export const addItalicText = (
     let newCursorPos;
 
     if (selectionStart === selectionEnd) {
-      // No text selected
-      newText = `${beforeText}**${afterText}`;
-      newCursorPos = selectionStart + 1;
+      // No text selected, insert backticks and place cursor in the middle
+      newText = `${beforeText}\n\`\`\`\n\n\`\`\`${afterText}`;
+      newCursorPos = selectionStart + 5; // Position cursor between the backticks
     } else {
-      // Text Selected
+      // Text selected, wrap it in backticks
       const selectedText = markdown.substring(selectionStart, selectionEnd);
-      newText = `${beforeText}*${selectedText}*${afterText}`;
-      newCursorPos = selectionEnd + 2;
+      newText = `${beforeText}\n\`\`\`\n${selectedText}\n\`\`\`${afterText}`;
+      newCursorPos = selectionEnd + 6; // Position cursor after the closing backtick
     }
 
     setMarkdown(newText);

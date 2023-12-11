@@ -1,4 +1,4 @@
-import React, { FunctionComponent, KeyboardEvent } from "react";
+import React, { FunctionComponent, KeyboardEvent, useEffect } from "react";
 import handleEditorKeys from "./Handle Keys/handleEditorKeys";
 
 interface EditorProps {
@@ -12,12 +12,20 @@ interface EditorProps {
     textAreaRef: React.RefObject<HTMLTextAreaElement>;
 }
 
-const Editor: FunctionComponent<EditorProps> = ({ markdown, setMarkdown, textAreaRef, undoStack, redoStack, setUndoStack, setRedoStack}) => {
-
+const Editor: FunctionComponent<EditorProps> = ({ markdown, setMarkdown, textAreaRef, undoStack, redoStack, setUndoStack, setRedoStack, newCursorPos, setNewCursorPos }) => {
+    
     // Handles keys
     const handleKeyDown = (event) => {
-        handleEditorKeys(event, textAreaRef, markdown, setMarkdown, undoStack, setUndoStack, redoStack, setRedoStack);
+        handleEditorKeys(event, textAreaRef, markdown, setMarkdown, undoStack, setUndoStack, redoStack, setRedoStack, setNewCursorPos);
     };
+
+    useEffect(() => {
+        if (newCursorPos !== null && textAreaRef.current) {
+          textAreaRef.current.focus();
+          textAreaRef.current.setSelectionRange(newCursorPos, newCursorPos);
+          setNewCursorPos(null); // Reset the cursor position state
+        }
+      }, [markdown, newCursorPos]); // Depend on markdown and newCursorPos
 
     return (
         <div className="rounded-l-[20px] bg-gray-600 border-r-2 border-gray-500">
