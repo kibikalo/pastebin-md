@@ -49,23 +49,14 @@ function App() {
 
   // Formatting features handlers
   const handleBoldButton = () => { addBold(textAreaRef, markdown, setMarkdown, setNewCursorPos); };
-
   const handleItalicButton = () => { addItalic(textAreaRef, markdown, setMarkdown, setNewCursorPos); }
-
   const handleStriketroughButton = () => { addStriketrough(textAreaRef, markdown, setMarkdown, setNewCursorPos); }
-
-  const handleQuoteButton = () => { addQuote(textAreaRef, markdown, setMarkdown); }
-
+  const handleQuoteButton = () => { addQuote(textAreaRef, markdown, setMarkdown, setNewCursorPos); }
   const handleCodeButton = () => { addCodeBlock(textAreaRef, markdown, setMarkdown, setNewCursorPos) }
-
-  const handleUnorderedList = () => { addUnorderedList(textAreaRef, markdown, setMarkdown); }
-
-  const handleOrderedList = () => { addOrderedList(textAreaRef, markdown, setMarkdown); }
-
-  const handleHeadingButton = (level) => { addHeading(textAreaRef, markdown, setMarkdown, level); }
-
+  const handleUnorderedList = () => { addUnorderedList(textAreaRef, markdown, setMarkdown, setNewCursorPos); }
+  const handleOrderedList = () => { addOrderedList(textAreaRef, markdown, setMarkdown, setNewCursorPos); }
+  const handleHeadingButton = (level) => { addHeading(textAreaRef, markdown, setMarkdown, level, setNewCursorPos); }
   const handleInsertLink = () => { addLink(textAreaRef, markdown, setMarkdown, setNewCursorPos) }
-
   const hdndaleInsertImage = () => { addImage(textAreaRef, markdown, setMarkdown, setNewCursorPos) }
 
   return (

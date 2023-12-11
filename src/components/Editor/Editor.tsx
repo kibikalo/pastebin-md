@@ -2,14 +2,17 @@ import React, { FunctionComponent, KeyboardEvent, useEffect } from "react";
 import handleEditorKeys from "./Handle Keys/handleEditorKeys";
 
 interface EditorProps {
+    textAreaRef: React.RefObject<HTMLTextAreaElement>;
+
     markdown: string;
     setMarkdown: (markdown: string) => void;
     undoStack: string[];
     setUndoStack: (stack: string[]) => void;
     redoStack: string[];
     setRedoStack: (stack: string[]) => void;
-    
-    textAreaRef: React.RefObject<HTMLTextAreaElement>;
+
+    newCursorPos: number | null;
+    setNewCursorPos: (pos: number | null) => void;
 }
 
 const Editor: FunctionComponent<EditorProps> = ({ markdown, setMarkdown, textAreaRef, undoStack, redoStack, setUndoStack, setRedoStack, newCursorPos, setNewCursorPos }) => {

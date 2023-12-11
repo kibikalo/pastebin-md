@@ -1,4 +1,9 @@
-export const addQuote = (textAreaRef, markdown, setMarkdown) => {
+export const addQuote = (
+  textAreaRef: React.RefObject<HTMLTextAreaElement>,
+  markdown: string,
+  setMarkdown: (value: string) => void,
+  setNewCursorPos: (value: number) => void
+) => {
     if (textAreaRef.current) {
       const { selectionStart, selectionEnd } = textAreaRef.current;
       const lines = markdown.split('\n');
@@ -17,11 +22,8 @@ export const addQuote = (textAreaRef, markdown, setMarkdown) => {
       lines[currentLine] = '> ' + lines[currentLine];
   
       const newText = lines.join('\n');
-      setMarkdown(newText);
-  
-      // Focus the textarea and set the cursor position
       const newCursorPos = charCount + 2; // 2 for '> '
-      textAreaRef.current.focus();
-      textAreaRef.current.setSelectionRange(newCursorPos, newCursorPos);
+      setMarkdown(newText);
+      setNewCursorPos(newCursorPos);
     }
   };

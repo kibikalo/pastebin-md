@@ -1,4 +1,9 @@
-export const addOrderedList = (textAreaRef, markdown, setMarkdown) => {
+export const addOrderedList = (
+  textAreaRef: React.RefObject<HTMLTextAreaElement>,
+  markdown: string,
+  setMarkdown: (value: string) => void,
+  setNewCursorPos: (value: number) => void
+) => {
     if (textAreaRef.current) {
       const { selectionStart, selectionEnd } = textAreaRef.current;
       const lines = markdown.split('\n');
@@ -15,12 +20,11 @@ export const addOrderedList = (textAreaRef, markdown, setMarkdown) => {
       }
   
       lines[currentLine] = '1. ' + lines[currentLine];
-  
+
       const newText = lines.join('\n');
-      setMarkdown(newText);
-  
       const newCursorPos = charCount + 3; // 3 for '1. '
-      textAreaRef.current.focus();
-      textAreaRef.current.setSelectionRange(newCursorPos, newCursorPos);
+
+      setMarkdown(newText);
+      setNewCursorPos(newCursorPos);
     }
   };

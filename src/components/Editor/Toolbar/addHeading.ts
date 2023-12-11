@@ -1,4 +1,10 @@
-export const addHeading = (textAreaRef, markdown, setMarkdown, headingLevel) => {
+export const addHeading = (
+  textAreaRef: React.RefObject<HTMLTextAreaElement>,
+  markdown: string,
+  setMarkdown: (value: string) => void,
+  headingLevel: number,
+  setNewCursorPos: (value: number) => void
+) => {
     if (textAreaRef.current && headingLevel >= 1 && headingLevel <= 6) {
       const headingPrefix = '#'.repeat(headingLevel) + ' ';
       const { selectionStart, selectionEnd } = textAreaRef.current;
@@ -17,11 +23,9 @@ export const addHeading = (textAreaRef, markdown, setMarkdown, headingLevel) => 
       lines[currentLine] = headingPrefix + lines[currentLine];
   
       const newText = lines.join('\n');
-      setMarkdown(newText);
-  
-      // Focus the textarea and set the cursor position
       const newCursorPos = charCount + headingPrefix.length;
-      textAreaRef.current.focus();
-      textAreaRef.current.setSelectionRange(newCursorPos, newCursorPos);
+      
+      setMarkdown(newText);
+      setNewCursorPos(newCursorPos);
     }
   };

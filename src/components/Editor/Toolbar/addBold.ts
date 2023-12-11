@@ -1,6 +1,5 @@
 import React from "react";
 
-// Function to wrap selected text with bold markdown or insert bold markdown
 export const addBold = (
   textAreaRef: React.RefObject<HTMLTextAreaElement>,
   markdown: string,

@@ -33,15 +33,15 @@ const handleEditorKeys = (event, textAreaRef, markdown, setMarkdown, undoStack, 
                 break;
             case 'u': // Ctrl + U
                 event.preventDefault();
-                addUnorderedList(textAreaRef, markdown, setMarkdown);
+                addUnorderedList(textAreaRef, markdown, setMarkdown, setNewCursorPos);
                 break;
             case 'o': // Ctrl + O
                 event.preventDefault();
-                addOrderedList(textAreaRef, markdown, setMarkdown);
+                addOrderedList(textAreaRef, markdown, setMarkdown, setNewCursorPos);
                 break;
             case 'q': // Ctrl + Q
                 event.preventDefault();
-                addQuote(textAreaRef, markdown, setMarkdown);
+                addQuote(textAreaRef, markdown, setMarkdown, setNewCursorPos);
                 break;
             case 'r': // Ctrl + R
                 event.preventDefault();
@@ -63,7 +63,7 @@ const handleEditorKeys = (event, textAreaRef, markdown, setMarkdown, undoStack, 
         if (event.key >= '1' && event.key <= '6') {
             event.preventDefault();
             const headingLevel = parseInt(event.key, 10);
-            addHeading(textAreaRef, markdown, setMarkdown, headingLevel);
+            addHeading(textAreaRef, markdown, setMarkdown, headingLevel, setNewCursorPos);
         }
     }
 
