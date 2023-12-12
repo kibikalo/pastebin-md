@@ -13,22 +13,48 @@ interface EditorProps {
 
     newCursorPos: number | null;
     setNewCursorPos: (pos: number | null) => void;
+
+    formattingChanges: string[];
+    setFormattingChanges: (stack: string[]) => void;
 }
 
-const Editor: FunctionComponent<EditorProps> = ({ markdown, setMarkdown, textAreaRef, undoStack, redoStack, setUndoStack, setRedoStack, newCursorPos, setNewCursorPos }) => {
+const Editor: FunctionComponent<EditorProps> = ({ 
+    markdown,
+    setMarkdown,
+    textAreaRef,
+    undoStack,
+    redoStack,
+    setUndoStack,
+    setRedoStack,
+    newCursorPos,
+    setNewCursorPos,
+    formattingChanges,
+    setFormattingChanges }) => {
     
     // Handles keys
     const handleKeyDown = (event) => {
-        handleEditorKeys(event, textAreaRef, markdown, setMarkdown, undoStack, setUndoStack, redoStack, setRedoStack, setNewCursorPos);
+        handleEditorKeys(
+            event,
+            textAreaRef,
+            markdown,
+            setMarkdown,
+            undoStack,
+            setUndoStack,
+            redoStack,
+            setRedoStack,
+            setNewCursorPos,
+            formattingChanges,
+            setFormattingChanges);
     };
 
+    // Used to set caret(cursor) position for formatting features
     useEffect(() => {
         if (newCursorPos !== null && textAreaRef.current) {
           textAreaRef.current.focus();
           textAreaRef.current.setSelectionRange(newCursorPos, newCursorPos);
           setNewCursorPos(null); // Reset the cursor position state
         }
-      }, [markdown, newCursorPos]); // Depend on markdown and newCursorPos
+      }, [markdown, newCursorPos]);
 
     return (
         <div className="rounded-l-[20px] bg-gray-600 border-r-2 border-gray-500">

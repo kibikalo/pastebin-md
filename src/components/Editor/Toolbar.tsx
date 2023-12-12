@@ -13,8 +13,17 @@ interface ToolbarProps {
   insertImageButtonAction: () => void;
 }
 
-const Toolbar: React.FC<ToolbarProps> = ({ boldButtonAction, italicButtonAction, striketroughAction, quoteButtonAction, codeButtonAction, headingButtonAction, unorderedListButtonAction, orderedListButtonAction, insertLinkButtonAction, insertImageButtonAction }) => {
-
+const Toolbar: React.FC<ToolbarProps> = ({ 
+  boldButtonAction,
+  italicButtonAction,
+  striketroughAction,
+  quoteButtonAction,
+  codeButtonAction,
+  headingButtonAction,
+  unorderedListButtonAction,
+  orderedListButtonAction,
+  insertLinkButtonAction,
+  insertImageButtonAction }) => {
 
   return (
     <div className="toolbar mr-80 py-2 px-8 flex flex-row flex-nowrap gap-3.5 rounded-[30px] bg-gray-900">

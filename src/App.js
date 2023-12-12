@@ -22,30 +22,22 @@ function App() {
   // State for the markdown content
   const [markdown, setMarkdown] = useState("");
 
+  // For formatting features
   const textAreaRef = React.createRef(null);
   const [newCursorPos, setNewCursorPos] = useState(null);
 
   // Undo / Redo feature
   const [undoStack, setUndoStack] = useState([]);
   const [redoStack, setRedoStack] = useState([]);
+  const [formattingChanges, setFormattingChanges] = useState([]);
 
   // State for Paste Menu visibilitie
   const [showPasteModal, setShowPasteModal] = useState(false);
 
-  const callback = (markdown) => {
+  const updateContent = (markdown, newFormattingChanges) => {
     setMarkdown(markdown);
+    setFormattingChanges(newFormattingChanges);
   }
-
-  // Function to handle changes in the editor content
-  const handleChange = (event) => {
-    const newContent = event.target.value;
-    // Push the current content to the undo stack
-    setUndoStack((prevStack) => [...prevStack, markdown]);
-    // Clear the redo stack
-    setRedoStack([]);
-    // Update the content
-    setMarkdown(newContent);
-  };
 
   // Formatting features handlers
   const handleBoldButton = () => { addBold(textAreaRef, markdown, setMarkdown, setNewCursorPos); };
@@ -82,7 +74,7 @@ function App() {
             {/* Main content area for editor and preview */}
             <main className='grid flex-grow grid-cols-1 py-3 sm:grid-cols-2'>
               <Editor markdown={markdown} 
-                      setMarkdown={callback} 
+                      setMarkdown={(markdown, newFormattingChanges) => updateContent(markdown, newFormattingChanges)} 
                       textAreaRef={textAreaRef}
                       undoStack={undoStack}
                       setUndoStack={setUndoStack}
@@ -90,6 +82,8 @@ function App() {
                       setRedoStack={setRedoStack}
                       newCursorPos={newCursorPos}
                       setNewCursorPos={setNewCursorPos}
+                      formattingChanges={formattingChanges}
+                      setFormattingChanges={setFormattingChanges}
               />
 
               <Preview markdown={markdown} /> 

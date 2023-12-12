@@ -14,7 +14,18 @@ import { addCodeBlock } from '../Toolbar/addCodeBlock.ts';
 import { addLink } from '../Toolbar/addLink.ts';
 import { addImage } from '../Toolbar/addImage.ts';
 
-const handleEditorKeys = (event, textAreaRef, markdown, setMarkdown, undoStack, redoStack, setUndoStack, setRedoStack, setNewCursorPos) => {
+const handleEditorKeys = (
+    event,
+    textAreaRef,
+    markdown,
+    setMarkdown,
+    undoStack,
+    redoStack,
+    setUndoStack,
+    setRedoStack,
+    setNewCursorPos,
+    formattingChanges,
+    setFormattingChanges ) => {
 
     // Formatting hot keys handling 
     if (event.ctrlKey || event.metaKey) { // metaKey is for MacOS
@@ -72,10 +83,10 @@ const handleEditorKeys = (event, textAreaRef, markdown, setMarkdown, undoStack, 
     const isRedoKey = (event.ctrlKey || event.metaKey) && event.shiftKey && event.key.toLowerCase() === 'z';
     if (isUndoKey) {
       // Ctrl + Z (Windows) or Command + Z (macOS) for undo
-      handleUndo(markdown, setMarkdown, undoStack, setUndoStack, setRedoStack);
+      handleUndo(markdown, setMarkdown, undoStack, setUndoStack, setRedoStack, formattingChanges, setFormattingChanges);
     } else if (isRedoKey) {
       // Ctrl + Shift + Z (Windows) or Command + Shift + Z (macOS) for redo
-      handleRedo(markdown, setMarkdown, undoStack, redoStack, setUndoStack, setRedoStack);
+      handleRedo(markdown, setMarkdown, undoStack, redoStack, setUndoStack, setRedoStack, formattingChanges, setFormattingChanges);
     }
 
     // Tab / Shift + Tab handling
@@ -85,9 +96,9 @@ const handleEditorKeys = (event, textAreaRef, markdown, setMarkdown, undoStack, 
     if (key === 'Tab') {
         event.preventDefault();
         if (event.shiftKey) {
-            handleShiftTab(event, textAreaRef, markdown, setMarkdown, TAB_SIZE);
+            handleShiftTab(event, textAreaRef, markdown, setMarkdown, setNewCursorPos,TAB_SIZE);
         } else {
-            handleTab(event, textAreaRef, markdown, setMarkdown, TAB_SIZE);
+            handleTab(event, textAreaRef, markdown, setMarkdown, setNewCursorPos, TAB_SIZE);
         }
     }
 
