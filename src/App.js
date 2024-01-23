@@ -23,6 +23,9 @@ function App() {
   // State for the markdown content
   const [markdown, setMarkdown] = useState("");
 
+  // For Theme Switcher
+  const [theme, setTheme] = useState(localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
+
   // For formatting features
   const textAreaRef = React.createRef(null);
   const [newCursorPos, setNewCursorPos] = useState(null);
@@ -34,6 +37,18 @@ function App() {
 
   // State for Paste Menu visibilitie
   const [showPasteModal, setShowPasteModal] = useState(false);
+
+  // Update theme based on preference
+  const toggleTheme = (newTheme) => {
+    setTheme(newTheme);
+    console.log(`Theme set to ${newTheme}!`);
+    localStorage.setItem('theme', newTheme);
+  };
+
+  // Apply the theme class to the body element
+  useEffect(() => {
+    document.body.className = theme;
+  }, [theme]);
 
   const updateContent = (markdown, newFormattingChanges) => {
     setMarkdown(markdown);
@@ -70,6 +85,8 @@ function App() {
                       headingButtonAction={handleHeadingButton}
                       insertLinkButtonAction={handleInsertLink}
                       insertImageButtonAction={hdndaleInsertImage}
+                      currentTheme={theme}
+                      toggleTheme={toggleTheme}
             />
       
             {/* Main content area for editor and preview */}

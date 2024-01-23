@@ -14,7 +14,13 @@ body {
 hr { 
   margin-top: 1rem!important;
   margin-bottom: 1rem!important;
-  border-color: gray!important;
+  border-color: #C4C4C7!important;
+}
+
+.dark hr { 
+  margin-top: 1rem!important;
+  margin-bottom: 1rem!important;
+  border-color: #434346!important;
 }
 
 code {
@@ -23,10 +29,36 @@ code {
 }
 
 .toolbar svg {
-  fill: #6E727F; /* default color */
+  fill: #6E727F;
 }
 
-.preview-component h1, h2, h3, h4, h5, h6, p, strong, a, blockquote {
-  color: #060609!important;
+.dark .toolbar svg {
+  fill: #A5A6A6;
+}
+
+body.light .preview-component h1,
+body.light .preview-component h2,
+body.light .preview-component h3,
+body.light .preview-component h4,
+body.light .preview-component h5,
+body.light .preview-component h6,
+body.light .preview-component p,
+body.light .preview-component strong,
+body.light .preview-component a,
+body.light .preview-component blockquote {
+  color: #060609 !important;
+}
+
+body.dark .preview-component h1,
+body.dark .preview-component h2,
+body.dark .preview-component h3,
+body.dark .preview-component h4,
+body.dark .preview-component h5,
+body.dark .preview-component h6,
+body.dark .preview-component p,
+body.dark .preview-component strong,
+body.dark .preview-component a,
+body.dark .preview-component blockquote {
+  color: #E6E6ED !important;
 }
 

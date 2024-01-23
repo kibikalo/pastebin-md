@@ -57,10 +57,10 @@ const Editor: FunctionComponent<EditorProps> = ({
       }, [markdown, newCursorPos]);
 
     return (
-        <div className="border-r-2">
+        <div className="border-r-2 border-light-border dark:border-dark-border">
             <textarea 
                 ref={textAreaRef}
-                className="box-border w-full h-full py-6 pl-8 pr-4 outline-none resize-none text-light-text bg-light-backgroung scrollbar-thin"
+                className="box-border w-full h-full py-6 pl-8 pr-4 outline-none resize-none text-light-text bg-light-background dark:text-dark-text dark:bg-dark-background scrollbar-thin"
                 value={markdown}
                 onChange={(e) => setMarkdown(e.target.value)}
                 onKeyDown={handleKeyDown}

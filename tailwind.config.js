@@ -6,18 +6,20 @@ module.exports = {
     extend: {
       colors: {
         dark: {
-          background: '#0F0F0F',
-          'button-back': '#1B1C1D',
-          'active-component': '#28292B',
-          text: '#ECECEC',
+          background: '#212121',
+          'button-back': '#232326',
+          'active-component': '#2E2E31',
+          text: '#E6E6ED',
           icon: '#A5A6A6',
+          border: '#434346',
         },
         light: {
           background: '#E9E9E9',
           'button-back': '#FFFFFF',
-          'active-component': '#E9E9EB',
+          'active-component': '#CDCDD7',
           text: '#060609',
           icon: '#6E727F',
+          border: '#C4C4C7',
         },
       },
     },
