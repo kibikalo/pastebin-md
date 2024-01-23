@@ -29,9 +29,9 @@ export default function Preview({markdown} : PreviewProps) {
     const parsed = DOMPurify.sanitize(marked.parse(markdown));
 
     return (
-    <div className="rounded-r-[20px] bg-gray-700">
+    <div className="max-h-screen preview-component text-light-text bg-light-backgroung">
         <div 
-            className="p-6 prose prose-invert prose-a:text-pink-600 rounded-r-[20px] scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-600 bg-gray-700"
+            className="w-full py-6 pl-8 pr-4 prose text-light-text bg-light-backgroung overflow-y prose-invert scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-600"
             dangerouslySetInnerHTML={{__html: parsed }}
         />
     </div>

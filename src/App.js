@@ -16,6 +16,7 @@ import { addStriketrough } from './components/Editor/Toolbar/addStrkitrough.ts';
 import { addCodeBlock } from './components/Editor/Toolbar/addCodeBlock.ts';
 import { addLink } from './components/Editor/Toolbar/addLink.ts';
 import { addImage } from './components/Editor/Toolbar/addImage.ts';
+import CaretPosition from './components/Editor/CaretPosition.jsx';
 
 
 function App() {
@@ -56,9 +57,9 @@ function App() {
       <Routes>
         {/* Route for creating new pastes */}
         <Route path='/' element= {
-          <div className='flex flex-col w-full h-screen px-32 pt-8 text-white bg-gray-800'>
+          <div className='flex flex-col w-full h-screen'>
 
-            <Toolbar  
+            <Toolbar
                       boldButtonAction={handleBoldButton}
                       italicButtonAction={handleItalicButton}
                       striketroughAction={handleStriketroughButton}
@@ -72,7 +73,7 @@ function App() {
             />
       
             {/* Main content area for editor and preview */}
-            <main className='grid flex-grow grid-cols-1 py-3 sm:grid-cols-2'>
+            <div className='grid flex-grow grid-cols-1 sm:grid-cols-2'>
               <Editor markdown={markdown} 
                       setMarkdown={(markdown, newFormattingChanges) => updateContent(markdown, newFormattingChanges)} 
                       textAreaRef={textAreaRef}
@@ -87,9 +88,11 @@ function App() {
               />
 
               <Preview markdown={markdown} /> 
-            </main>
+            </div>
 
-            {/* Settings & Save paste*/}
+            <CaretPosition />
+
+            {/* Settings & Save paste
             <div className='flex'>
               
               
@@ -103,8 +106,7 @@ function App() {
               <PasteSettingsModal isVisible={showPasteModal} 
                                   onClose={() => setShowPasteModal(false)}
                                   markdown={markdown} />
-            </div>
-
+            </div> */}
 
           </div>
         }/>

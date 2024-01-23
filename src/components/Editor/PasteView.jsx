@@ -30,7 +30,7 @@ const PasteView = () => {
   }, [hash]);
 
   if (error) {
-    return <div>{error}</div>; // TODO: 
+    return <div>{error}</div>;
   }
 
   console.log("Paste content: \n" + pasteContent);

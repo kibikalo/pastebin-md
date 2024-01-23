@@ -1,4 +1,4 @@
-import React, { FunctionComponent, KeyboardEvent, useEffect } from "react";
+import React, { FunctionComponent, useEffect } from "react";
 import handleEditorKeys from "./Handle Keys/handleEditorKeys";
 
 interface EditorProps {
@@ -57,10 +57,10 @@ const Editor: FunctionComponent<EditorProps> = ({
       }, [markdown, newCursorPos]);
 
     return (
-        <div className="rounded-l-[20px] bg-gray-600 border-r-2 border-gray-500">
+        <div className="border-r-2">
             <textarea 
                 ref={textAreaRef}
-                className="w-full h-full resize-none outline-none p-6 text-gray-200 box-border rounded-l-[20px] scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-600 bg-gray-600"
+                className="box-border w-full h-full py-6 pl-8 pr-4 outline-none resize-none text-light-text bg-light-backgroung scrollbar-thin"
                 value={markdown}
                 onChange={(e) => setMarkdown(e.target.value)}
                 onKeyDown={handleKeyDown}
