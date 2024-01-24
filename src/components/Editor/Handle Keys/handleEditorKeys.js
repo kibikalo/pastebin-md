@@ -50,6 +50,10 @@ const handleEditorKeys = (
                 event.preventDefault();
                 addOrderedList(textAreaRef, markdown, setMarkdown, setNewCursorPos);
                 break;
+            case '`': // Ctrl + `
+                event.preventDefault(textAreaRef, markdown, setMarkdown, setNewCursorPos);
+                addCodeBlock();
+                break;
             case 'q': // Ctrl + Q
                 event.preventDefault();
                 addQuote(textAreaRef, markdown, setMarkdown, setNewCursorPos);
