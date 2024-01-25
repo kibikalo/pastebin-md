@@ -14,7 +14,7 @@ import { addCodeBlock } from '../Toolbar/addCodeBlock.ts';
 import { addLink } from '../Toolbar/addLink.ts';
 import { addImage } from '../Toolbar/addImage.ts';
 
-const handleEditorKeys = (
+const handleFormattingKeys = (
     event,
     textAreaRef,
     markdown,
@@ -112,4 +112,4 @@ const handleEditorKeys = (
     }
 };
 
-export default handleEditorKeys;
+export default handleFormattingKeys;

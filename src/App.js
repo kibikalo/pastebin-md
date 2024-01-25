@@ -4,12 +4,10 @@ import Editor from './components/Editor/Editor.tsx';
 import Preview from './components/Editor/Preview.tsx';
 import Toolbar from './components/Editor/Toolbar.tsx';
 import PasteView from './components/Editor/PasteView.jsx';
-import ThemeSwitcher from './components/Buttons/ThemeSwitcher.jsx';
 import { addBold } from './components/Editor/Toolbar/addBold.ts';
 import { addItalic } from './components/Editor/Toolbar/addItalic.ts';
 import { addHeading } from './components/Editor/Toolbar/addHeading.ts';
 import { addQuote } from './components/Editor/Toolbar/addQuote.ts';
-import PasteSettingsModal from './components/Paste/PasteSettingsModal.jsx';
 import { addUnorderedList } from './components/Editor/Toolbar/addUnorderedList.ts';
 import { addOrderedList } from './components/Editor/Toolbar/addOrderedList.ts';
 import { addStriketrough } from './components/Editor/Toolbar/addStrkitrough.ts';
@@ -22,6 +20,13 @@ import CaretPosition from './components/Editor/CaretPosition.jsx';
 function App() {
   // State for the markdown content
   const [markdown, setMarkdown] = useState("");
+
+  useEffect(() => {
+      fetch('/byDefault.txt')
+          .then(response => response.text())
+          .then(text => setMarkdown(text))
+          .catch(error => console.error('Error fetching default content:', error));
+  }, []);
 
   // State for formatting features
   const textAreaRef = React.createRef(null);
@@ -113,7 +118,7 @@ function App() {
 
         {/* Route for viewing a paste by hash */}
         <Route path="/:hash" element={ <PasteView/> } />
-
+        
       </Routes>
     </Router>
   );

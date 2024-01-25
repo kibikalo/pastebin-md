@@ -61,3 +61,13 @@ body.dark .preview-component a,
 body.dark .preview-component blockquote {
   color: #E6E6ED !important;
 }
+
+.toolbar :first-child {
+  border-top-left-radius: 0.75rem;
+  border-bottom-left-radius: 0.75rem;
+}
+
+.toolbar :last-child {
+  border-top-right-radius: 0.75rem;
+  border-bottom-right-radius: 0.75rem;
+}

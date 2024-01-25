@@ -1,11 +1,12 @@
 import React, { FunctionComponent, useEffect } from "react";
-import handleEditorKeys from "./Handle Keys/handleEditorKeys";
+import handleFormattingKeys from "./Handle Keys/handleFormattingKeys";
 
 interface EditorProps {
     textAreaRef: React.RefObject<HTMLTextAreaElement>;
 
     markdown: string;
     setMarkdown: (markdown: string) => void;
+    
     undoStack: string[];
     setUndoStack: (stack: string[]) => void;
     redoStack: string[];
@@ -33,7 +34,7 @@ const Editor: FunctionComponent<EditorProps> = ({
     
     // Handles keys
     const handleKeyDown = (event) => {
-        handleEditorKeys(
+        handleFormattingKeys(
             event,
             textAreaRef,
             markdown,
@@ -47,7 +48,7 @@ const Editor: FunctionComponent<EditorProps> = ({
             setFormattingChanges);
     };
 
-    // Used to set caret(cursor) position for formatting features
+    // Uses to set caret(cursor) position for formatting features
     useEffect(() => {
         if (newCursorPos !== null && textAreaRef.current) {
           textAreaRef.current.focus();

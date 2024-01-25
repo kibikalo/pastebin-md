@@ -14,7 +14,7 @@ const ThemeSwitcher: React.FC = () => {
     // Effect to apply the theme and store it in a cookie
     useEffect(() => {
         document.body.className = isDark ? 'dark' : 'light';
-        setCookie('theme', isDark ? 'dark' : 'light', 7);
+        setCookie('theme', isDark ? 'dark' : 'light', 180);
     }, [isDark]);
 
     function setCookie(name, value, days) {

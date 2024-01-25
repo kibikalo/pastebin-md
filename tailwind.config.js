@@ -1,5 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  mode: 'jit',
+  purge: ["./index.html", "./src/**/*.{html,js,ts,jsx,tsx,}"],
   content: ["./index.html", "./src/**/*.{html,js,ts,jsx,tsx,}"],
   darkMode: "class",
   theme: {
@@ -22,6 +24,11 @@ module.exports = {
           border: '#C4C4C7',
         },
       },
+    },
+  },
+  variants: {
+    extend: {
+      borderRadius: ['first', 'last'],
     },
   },
   plugins: [

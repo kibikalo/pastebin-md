@@ -1,0 +1,62 @@
+# Markdown Guide
+## Heading 2
+### Heading 3
+#### Heading 4
+##### Heading 5
+###### Heading 6
+
+***
+
+ ```js
+useEffect(() => {
+        const savedTheme = getCookie('theme');
+        const isDarkMode = savedTheme === 'dark' ? true : window.matchMedia('(prefers-color-scheme: dark)').matches;
+        setIsDark(isDarkMode);
+    }, []);
+ ```
+
+***
+
+**Bold**
+
+*Italic*
+
+***Bold Italic***
+
+~~Striketrough~~
+
+***
+
+> Really important quote
+
+>Blockquotes 
+>
+> with Multiple Paragraphs
+
+> >> Really important 
+
+> ### The quarterly results look great!
+>
+> - List inside quote
+>
+
+***
+
+1. First item
+2. Second item
+    1. Indented item
+    2. Indented item
+
+- First item
+- Second item
+    - Indented item
+    - Indented item
+
+1. First item
+2. Second item
+3. Third item
+    - Indented item
+    - Indented item
+4. Fourth item
+
+***

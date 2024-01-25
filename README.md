@@ -29,7 +29,7 @@ Pastebin application with Markdown Editor. For the backend i am using [pastebin-
         - ~~Redo~~ - Ctrl + Shift + Z
         - Save   - Ctrl + Shift + S
         - Tab / Shift + Tab
-    - Dark & Light Themes
+    - ~~Dark & Light Theme~~
 
 ***
 
