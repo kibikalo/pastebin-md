@@ -7,16 +7,6 @@
 
 ***
 
- ```js
-useEffect(() => {
-        const savedTheme = getCookie('theme');
-        const isDarkMode = savedTheme === 'dark' ? true : window.matchMedia('(prefers-color-scheme: dark)').matches;
-        setIsDark(isDarkMode);
-    }, []);
- ```
-
-***
-
 **Bold**
 
 *Italic*
@@ -29,16 +19,21 @@ useEffect(() => {
 
 > Really important quote
 
->Blockquotes 
+> ## Blockquotes 
 >
-> with Multiple Paragraphs
+>  * with Multiple Paragraphs
+>  1. One 
+>  2. Two
 
-> >> Really important 
+***
 
-> ### The quarterly results look great!
->
-> - List inside quote
->
+ ```js
+useEffect(() => {
+        const savedTheme = getCookie('theme');
+        const isDarkMode = savedTheme === 'dark' ? true : window.matchMedia('(prefers-color-scheme: dark)').matches;
+        setIsDark(isDarkMode);
+    }, []);
+ ```
 
 ***
 

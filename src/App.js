@@ -21,16 +21,13 @@ function App() {
   // State for the markdown content
   const [markdown, setMarkdown] = useState("");
 
-  useEffect(() => {
-      fetch('/byDefault.txt')
-          .then(response => response.text())
-          .then(text => setMarkdown(text))
-          .catch(error => console.error('Error fetching default content:', error));
-  }, []);
-
   // State for formatting features
   const textAreaRef = React.createRef(null);
   const [newCursorPos, setNewCursorPos] = useState(null);
+
+  // State for Sync Scroll feature
+  const [scrollPercentage, setScrollPercentage] = useState(0);
+  const [scrollSource, setScrollSource] = useState(''); // 'editor' or 'preview'
 
   // Undo / Redo feature
   const [undoStack, setUndoStack] = useState([]);
@@ -40,10 +37,30 @@ function App() {
   // State for Paste Menu visibilitie
   const [showPasteModal, setShowPasteModal] = useState(false);
 
+  // Manual by default
+  useEffect(() => {
+    fetch('/byDefault.txt')
+        .then(response => response.text())
+        .then(text => setMarkdown(text))
+        .catch(error => console.error('Error fetching default content:', error));
+}, []);
+
   const updateContent = (markdown, newFormattingChanges) => {
     setMarkdown(markdown);
     setFormattingChanges(newFormattingChanges);
   }
+
+  // Function to update scroll source to 'editor'
+  const handleEditorScroll = (percentage) => {
+    setScrollSource('editor');
+    setScrollPercentage(percentage);
+  };
+
+  // Function to update scroll source to 'preview'
+  const handlePreviewScroll = (percentage) => {
+    setScrollSource('preview');
+    setScrollPercentage(percentage);
+  };
 
   // Formatting features handlers
   const handleBoldButton = () => { addBold(textAreaRef, markdown, setMarkdown, setNewCursorPos); };
@@ -82,17 +99,33 @@ function App() {
               <Editor markdown={markdown} 
                       setMarkdown={(markdown, newFormattingChanges) => updateContent(markdown, newFormattingChanges)} 
                       textAreaRef={textAreaRef}
+
                       undoStack={undoStack}
                       setUndoStack={setUndoStack}
                       redoStack={redoStack}
                       setRedoStack={setRedoStack}
+
                       newCursorPos={newCursorPos}
                       setNewCursorPos={setNewCursorPos}
+
                       formattingChanges={formattingChanges}
                       setFormattingChanges={setFormattingChanges}
+
+                      setScrollPercentage={setScrollPercentage}
+                      setScrollSource={() => setScrollSource('editor')}
+                      scrollPercentage={scrollSource === 'editor' ? scrollPercentage : null}
+                      scrollSource={scrollSource}
+                      onEditorScroll={handleEditorScroll}
               />
 
-              <Preview markdown={markdown} /> 
+              <Preview  markdown={markdown}
+                        setScrollPercentage={setScrollPercentage} 
+                        setScrollSource={() => setScrollSource('preview')}
+                        scrollPercentage={scrollSource === 'preview' ? scrollPercentage : null}
+                        scrollSource={scrollSource} 
+                        onPreviewScroll={handlePreviewScroll}
+              />
+              
             </div>
 
             <CaretPosition />

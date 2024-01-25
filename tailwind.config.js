@@ -7,14 +7,6 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        dark: {
-          background: '#212121',
-          'button-back': '#232326',
-          'active-component': '#2E2E31',
-          text: '#E6E6ED',
-          icon: '#A5A6A6',
-          border: '#434346',
-        },
         light: {
           background: '#E9E9E9',
           'button-back': '#FFFFFF',
@@ -22,6 +14,14 @@ module.exports = {
           text: '#060609',
           icon: '#6E727F',
           border: '#C4C4C7',
+        },
+        dark: {
+          background: '#212121',
+          'button-back': '#232326',
+          'active-component': '#41414d',
+          text: '#E6E6ED',
+          icon: '#A5A6A6',
+          border: '#434346',
         },
       },
     },
