@@ -5,8 +5,9 @@ Pastebin application with Markdown Editor. For the backend i am using [pastebin-
 ## Tech Stack
     - React.js
     - Tailwind CSS
+        - Typography & Scrollbar plugins
     - Marked.js
-    - Highlight.js 
+    - Highlight.js
 
 ## Road map:
 
@@ -17,19 +18,22 @@ Pastebin application with Markdown Editor. For the backend i am using [pastebin-
         - ~~Italic             - Ctrl + I~~ 
         - ~~Striketrough       - Ctrl + S~~
         - ~~Quote              - Ctrl + Q~~
-        - ~~Code Block         - Ctrl + C~~
         - ~~Unordered List     - Ctrl + U~~
         - ~~Ordered List       - Ctrl + O~~
         - ~~Insert Link        - Ctrl + L~~
         - ~~Insert Image       - Ctrl + P~~
         ***
+        - Code Block         - Ctrl + `
         - Check List         - Ctrl + T
+        - Divider            - Ctrl + 
         ***
-        - ~~Undo~~ - Ctrl + Z
-        - ~~Redo~~ - Ctrl + Shift + Z
+        - ~~Undo - Ctrl + Z~~
+        - ~~Redo - Ctrl + Shift + Z~~
+        - ~~Tab / Shift + Tab~~
         - Save   - Ctrl + Shift + S
-        - Tab / Shift + Tab
-    - ~~Dark & Light Theme~~
+    - ~~Light / Dark Theme~~
+    - Synchronized Editor / Preview scroll
+    - Row / Column Display
 
 ***
 

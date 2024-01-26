@@ -92,7 +92,7 @@ const Editor: FunctionComponent<EditorProps> = ({
         <div className="border-r-2 border-light-border dark:border-dark-border">
             <textarea 
                 ref={textAreaRef}
-                className="box-border w-full h-full py-6 pl-8 pr-4 outline-none resize-none text-light-text bg-light-background dark:text-dark-text dark:bg-dark-background scrollbar-thin scrollbar-thumb-light-active-component scrollbar-track-light-button-back dark:scrollbar-thumb-dark-active-component dark:scrollbar-track-dark-button-back"
+                className="box-border w-full h-full py-6 pl-10 pr-4 outline-none resize-none text-light-text bg-light-background dark:text-dark-text dark:bg-dark-background scrollbar-thin scrollbar-thumb-light-active-component scrollbar-track-light-button-back dark:scrollbar-thumb-dark-active-component dark:scrollbar-track-dark-button-back"
                 value={markdown}
                 onChange={(e) => setMarkdown(e.target.value)}
                 onScroll={handleScroll}

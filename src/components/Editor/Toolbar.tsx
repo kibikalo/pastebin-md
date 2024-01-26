@@ -28,10 +28,10 @@ const Toolbar: React.FC<ToolbarProps> = ({
 
 
     return (
-      <div className="h-[48px] flex justify-between px-8 py-2 border-b-2 flex-nowrap text-light-text dark:text-dark-text bg-light-button-back dark:bg-dark-button-back border-light-border dark:border-dark-border">
+      <div className="h-[48px] flex justify-between px-10 py-2 border-b-2 flex-nowrap text-light-text dark:text-dark-text bg-light-button-back dark:bg-dark-button-back border-light-border dark:border-dark-border">
         
         {/* Formatting Toolbar */}
-        <div className='h-[32px] box-border flex flex-row justify-start gap-3.5 toolbar border-light-border dark:border-dark-border focus:outline-none focus:ring focus:ring-light-border dark:focus:ring-dark-border'>
+        <div className='h-[32px] box-border flex flex-row justify-start gap-4 toolbar border-light-border dark:border-dark-border focus:outline-none focus:ring focus:ring-light-border dark:focus:ring-dark-border'>
           
           <div>
             <button   onClick={boldButtonAction}
@@ -52,17 +52,7 @@ const Toolbar: React.FC<ToolbarProps> = ({
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0z"></path><path d="M17.1538 14C17.3846 14.5161 17.5 15.0893 17.5 15.7196C17.5 17.0625 16.9762 18.1116 15.9286 18.867C14.8809 19.6223 13.4335 20 11.5862 20C9.94674 20 8.32335 19.6185 6.71592 18.8555V16.6009C8.23538 17.4783 9.7908 17.917 11.3822 17.917C13.9333 17.917 15.2128 17.1846 15.2208 15.7196C15.2208 15.0939 15.0049 14.5598 14.5731 14.1173C14.5339 14.0772 14.4939 14.0381 14.4531 14H3V12H21V14H17.1538ZM13.076 11H7.62908C7.4566 10.8433 7.29616 10.6692 7.14776 10.4778C6.71592 9.92084 6.5 9.24559 6.5 8.45207C6.5 7.21602 6.96583 6.165 7.89749 5.299C8.82916 4.43299 10.2706 4 12.2219 4C13.6934 4 15.1009 4.32808 16.4444 4.98426V7.13591C15.2448 6.44921 13.9293 6.10587 12.4978 6.10587C10.0187 6.10587 8.77917 6.88793 8.77917 8.45207C8.77917 8.87172 8.99709 9.23796 9.43293 9.55079C9.86878 9.86362 10.4066 10.1135 11.0463 10.3004C11.6665 10.4816 12.3431 10.7148 13.076 11H13.076Z"></path></svg>
             </button>
 
-            <button   onClick={quoteButtonAction}
-                      className="w-8 p-1 toolbar-button-quote hover:bg-light-active-component dark:hover:bg-dark-active-component"
-                      title='Quote  (Ctrl + Q)'>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0z"></path><path d="M4.58341 17.3211C3.55316 16.2275 3 15 3 13.0104C3 9.51092 5.45651 6.37372 9.03059 4.82324L9.92328 6.20085C6.58804 8.00545 5.93618 10.3461 5.67564 11.8221C6.21263 11.5444 6.91558 11.4467 7.60471 11.5106C9.40908 11.6778 10.8312 13.1591 10.8312 15C10.8312 16.933 9.26416 18.5 7.33116 18.5C6.2581 18.5 5.23196 18.0096 4.58341 17.3211ZM14.5834 17.3211C13.5532 16.2275 13 15 13 13.0104C13 9.51092 15.4565 6.37372 19.0306 4.82324L19.9233 6.20085C16.588 8.00545 15.9362 10.3461 15.6756 11.8221C16.2126 11.5444 16.9156 11.4467 17.6047 11.5106C19.4091 11.6778 20.8312 13.1591 20.8312 15C20.8312 16.933 19.2642 18.5 17.3312 18.5C16.2581 18.5 15.232 18.0096 14.5834 17.3211Z"></path></svg>
-            </button>
-
-            <button   onClick={codeButtonAction}
-                      className="w-8 p-1 toolbar-button-code-block hover:bg-light-active-component dark:hover:bg-dark-active-component"
-                      title='Code Block (Ctrl + `)'>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0z"></path><path d="M24 12L18.3431 17.6569L16.9289 16.2426L21.1716 12L16.9289 7.75736L18.3431 6.34315L24 12ZM2.82843 12L7.07107 16.2426L5.65685 17.6569L0 12L5.65685 6.34315L7.07107 7.75736L2.82843 12ZM9.78845 21H7.66009L14.2116 3H16.3399L9.78845 21Z"></path></svg>
-            </button>
+            
           </div>
 
           <div>
@@ -77,6 +67,27 @@ const Toolbar: React.FC<ToolbarProps> = ({
                       title='Ordered List  (Ctrl + O)'>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0z"></path><path d="M8 4H21V6H8V4ZM5 3V6H6V7H3V6H4V4H3V3H5ZM3 14V11.5H5V11H3V10H6V12.5H4V13H6V14H3ZM5 19.5H3V18.5H5V18H3V17H6V21H3V20H5V19.5ZM8 11H21V13H8V11ZM8 18H21V20H8V18Z"></path></svg>
             </button>
+            
+            <button
+                      className="w-8 p-1 toolbar-button-checked-list hover:bg-light-active-component dark:hover:bg-dark-active-component"
+                      title='Cheked List (Ctrl + T)'>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M8.00008 6V9H5.00008V6H8.00008ZM3.00008 4V11H10.0001V4H3.00008ZM13.0001 4H21.0001V6H13.0001V4ZM13.0001 11H21.0001V13H13.0001V11ZM13.0001 18H21.0001V20H13.0001V18ZM10.7072 16.2071L9.29297 14.7929L6.00008 18.0858L4.20718 16.2929L2.79297 17.7071L6.00008 20.9142L10.7072 16.2071Z"></path></svg>            </button>
+
+          </div>
+
+          <div>
+            <button   onClick={quoteButtonAction}
+                      className="w-8 p-1 toolbar-button-quote hover:bg-light-active-component dark:hover:bg-dark-active-component"
+                      title='Quote  (Ctrl + Q)'>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0z"></path><path d="M4.58341 17.3211C3.55316 16.2275 3 15 3 13.0104C3 9.51092 5.45651 6.37372 9.03059 4.82324L9.92328 6.20085C6.58804 8.00545 5.93618 10.3461 5.67564 11.8221C6.21263 11.5444 6.91558 11.4467 7.60471 11.5106C9.40908 11.6778 10.8312 13.1591 10.8312 15C10.8312 16.933 9.26416 18.5 7.33116 18.5C6.2581 18.5 5.23196 18.0096 4.58341 17.3211ZM14.5834 17.3211C13.5532 16.2275 13 15 13 13.0104C13 9.51092 15.4565 6.37372 19.0306 4.82324L19.9233 6.20085C16.588 8.00545 15.9362 10.3461 15.6756 11.8221C16.2126 11.5444 16.9156 11.4467 17.6047 11.5106C19.4091 11.6778 20.8312 13.1591 20.8312 15C20.8312 16.933 19.2642 18.5 17.3312 18.5C16.2581 18.5 15.232 18.0096 14.5834 17.3211Z"></path></svg>
+            </button>
+
+            <button   onClick={codeButtonAction}
+                      className="w-8 p-1 toolbar-button-code-block hover:bg-light-active-component dark:hover:bg-dark-active-component"
+                      title='Code Block (Ctrl + `)'>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0z"></path><path d="M24 12L18.3431 17.6569L16.9289 16.2426L21.1716 12L16.9289 7.75736L18.3431 6.34315L24 12ZM2.82843 12L7.07107 16.2426L5.65685 17.6569L0 12L5.65685 6.34315L7.07107 7.75736L2.82843 12ZM9.78845 21H7.66009L14.2116 3H16.3399L9.78845 21Z"></path></svg>
+            </button>
+            
           </div>
 
           <div>

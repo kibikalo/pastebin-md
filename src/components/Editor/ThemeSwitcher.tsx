@@ -42,7 +42,7 @@ const ThemeSwitcher: React.FC = () => {
         <button onClick={() => setIsDark(!isDark)} className="rounded-full">
             <div className={`relative w-14 h-8 bg-gray-200 dark:bg-gray-600 rounded-full p-1 transition-all duration-300`}>
                 <div
-                    className={`absolute left-1 top-1 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-400 w-6 h-6 rounded-full transition-all duration-300 ${
+                    className={`absolute left-1 top-1 bg-light-active-component dark:bg-dark-active-component border border-light-border dark:border-dark-border w-6 h-6 rounded-full transition-all duration-300 ${
                         isDark ? 'translate-x-6' : ''
                     }`}
                 >

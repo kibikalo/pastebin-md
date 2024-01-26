@@ -61,7 +61,7 @@ export default function Preview({ markdown, setScrollPercentage, setScrollSource
         <div 
             ref={previewRef}
             onScroll={handleScroll}
-            className="w-full py-6 pl-8 pr-4 mx-3 prose preview-max-height text-light-text bg-light-background dark:text-dark-text dark:bg-dark-background dark:prose-invert scrollbar-thin scrollbar-thumb-light-active-component scrollbar-track-light-button-back dark:scrollbar-thumb-dark-active-component dark:scrollbar-track-dark-button-back"
+            className="py-6 pl-10 pr-10 prose max-w-none prose-blockquote:border-l-light-border dark:prose-blockquote:border-l-dark-border preview-max-height text-light-text bg-light-background dark:text-dark-text dark:bg-dark-background dark:prose-invert scrollbar-thin scrollbar-thumb-light-active-component scrollbar-track-light-button-back dark:scrollbar-thumb-dark-active-component dark:scrollbar-track-dark-button-back"
             dangerouslySetInnerHTML={{__html: parsed }}
         />
     </div>
