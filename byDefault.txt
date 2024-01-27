@@ -1,0 +1,94 @@
+# Markdown Guide
+## Heading 2
+### Heading 3
+#### Heading 4
+##### Heading 5
+###### Heading 6
+
+***
+
+## Text formatting
+
+**Bold**
+
+*Italic*
+
+***Bold Italic***
+
+~~Strikethrough~~
+
+***
+
+### Links and Images 
+Example link to [project GitHub repository](https://github.com/kibikalo/pastebin-md)
+
+And image:
+![I'm just KEN](https://fwcdn.pl/nph/1032473/2022/37674.7.jpg)
+
+***
+
+## Quote
+
+> Really wise quote
+
+> ## Blockquote
+> >  If you're going to do something, do it with style! 
+> 
+> >  The best things in life sometimes happen spontaneously.
+>  
+> Jason Statham
+
+## Code Blocks 
+
+For code highlighting, I'm using [highlight.js](https://github.com/highlightjs/highlight.js) library.
+To set highlighted language, just write it's alias like this in code block syntax:
+```
+    ```js
+    
+    ```
+```
+To see supported languages and their aliases, search this official [table](https://github.com/highlightjs/highlight.js/blob/main/SUPPORTED_LANGUAGES.md).
+
+##### Code Block Example
+ ```js
+useEffect(() => {
+        const savedTheme = getCookie('theme');
+        const isDarkMode = savedTheme === 'dark' ? true : window.matchMedia('(prefers-color-scheme: dark)').matches;
+        setIsDark(isDarkMode);
+    }, []);
+ ```
+
+## Tables
+|              | Column  |Column |
+|-------------|-------|---------|
+|Row 1          | Value | Value |
+|Row 2          | Value | Value |
+|Row 3          | Value | Value |
+
+## Lists
+
+#### Ordered list:
+1. First item
+2. Second item
+    1. Indented item
+    2. Indented item
+
+#### Unordered list:
+- First item
+- Second item
+    - Indented item
+    - Indented item
+
+#### Combined
+1. First item
+2. Second item
+    - Indented item
+    - [ ] Indented item
+3. Third item
+
+#### To-Do List
+ - [x] First item
+ - [ ] Second item
+	 - [ ] First 
+	 - [ ] Second
+ - [x] Third Item
