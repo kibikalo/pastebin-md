@@ -5,6 +5,8 @@
 ##### Heading 5
 ###### Heading 6
 
+***
+
 ## Text formatting
 
 **Bold**
@@ -45,7 +47,7 @@ To set highlighted language, just write it's alias like this in code block synta
     
     ```
 ```
-To see supported languages and their aliases, search this official [table](https://github.com/highlightjs/highlight.js).
+To see supported languages and their aliases, search this official [table](https://github.com/highlightjs/highlight.js/blob/main/SUPPORTED_LANGUAGES.md).
 
 ##### Code Block Example
  ```js
