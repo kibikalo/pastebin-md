@@ -75,10 +75,10 @@ function App() {
   const hdndaleInsertImage = () => { addImage(textAreaRef, markdown, setMarkdown, setNewCursorPos) }
 
   return (
-    <Router>
-      <Routes>
-        {/* Route for creating new pastes */}
-        <Route path='/' element= {
+    // <Router>
+    //   <Routes>
+    //     {/* Route for creating new pastes */}
+    //     <Route path='/' element= {
           <div className='flex flex-col w-full h-screen'>
 
             <Toolbar
@@ -143,13 +143,13 @@ function App() {
             </div> */}
 
           </div>
-        }/>
+        // }/>
 
-        {/* Route for viewing a paste by hash */}
-        <Route path="/:hash" element={ <PasteView/> } />
+    //     {/* Route for viewing a paste by hash */}
+    //     <Route path="/:hash" element={ <PasteView/> } />
         
-      </Routes>
-    </Router>
+    //   </Routes>
+    // </Router>
   );
 }
 
