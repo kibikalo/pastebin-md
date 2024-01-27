@@ -37,7 +37,7 @@ function App() {
   // State for Paste Menu visibilitie
   const [showPasteModal, setShowPasteModal] = useState(false);
 
-  // Manual by default
+  // Text by default in editor view
   useEffect(() => {
     fetch('/byDefault.txt')
         .then(response => response.text())
@@ -111,17 +111,13 @@ function App() {
                       formattingChanges={formattingChanges}
                       setFormattingChanges={setFormattingChanges}
 
-                      setScrollPercentage={setScrollPercentage}
-                      setScrollSource={() => setScrollSource('editor')}
-                      scrollPercentage={scrollSource === 'editor' ? scrollPercentage : null}
+                      scrollPercentage={scrollPercentage}
                       scrollSource={scrollSource}
                       onEditorScroll={handleEditorScroll}
               />
 
               <Preview  markdown={markdown}
-                        setScrollPercentage={setScrollPercentage} 
-                        setScrollSource={() => setScrollSource('preview')}
-                        scrollPercentage={scrollSource === 'preview' ? scrollPercentage : null}
+                        scrollPercentage={scrollPercentage}
                         scrollSource={scrollSource} 
                         onPreviewScroll={handlePreviewScroll}
               />

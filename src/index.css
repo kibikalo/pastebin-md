@@ -23,6 +23,53 @@ hr {
   border-color: #434346!important;
 }
 
+.preview h1 {
+  font-size: 2.5em;
+  font-weight: 700;
+
+  margin-block-end: 1.5em;
+}
+
+.preview h2 {
+  font-size: 1.75em;
+  font-weight: 700;
+
+  margin-block-start: 1em;
+  margin-block-end: 1.75em;
+}
+
+.preview h3 {
+  font-size: 1.50em;
+  font-weight: 700;
+
+  margin-block-start: 0.75em;
+  margin-block-end: 1.5em;
+}
+
+.preview h4 {
+  font-size: 1.25em;
+  font-weight: 700;
+
+  margin-block-start: 0.5em;
+  margin-block-end: 1.25em;
+}
+
+.preview h5 {
+  font-size: 1em;
+  font-weight: 700;
+
+  margin-block-start: 0.5em;
+  margin-block-end: 1em;
+}
+
+.preview h6 {
+  font-size: 0.75em;
+  font-weight: 700;
+  
+  margin-block-start: 0.5em;
+  margin-block-end: 1em;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
@@ -51,10 +98,6 @@ code {
   max-height: calc(100vh - 3rem - 1.375rem); /* Screen height - toolbar - footer */
   overflow-y: auto;
 }
-
-/* .preview-width {
-  width: calc(100vw - 26.325rem);
-} */
 
 /* Styles for scrollbar of highlighted code block  */
 .hljs {

@@ -5,7 +5,7 @@ export const addQuote = (
   setNewCursorPos: (value: number) => void
 ) => {
     if (textAreaRef.current) {
-      const { selectionStart, selectionEnd } = textAreaRef.current;
+      const { selectionStart } = textAreaRef.current;
       const lines = markdown.split('\n');
       
       let currentLine = 0;

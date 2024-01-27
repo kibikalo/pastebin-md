@@ -7,7 +7,7 @@ export const addHeading = (
 ) => {
     if (textAreaRef.current && headingLevel >= 1 && headingLevel <= 6) {
       const headingPrefix = '#'.repeat(headingLevel) + ' ';
-      const { selectionStart, selectionEnd } = textAreaRef.current;
+      const { selectionStart} = textAreaRef.current;
       const lines = markdown.split('\n');
       
       let currentLine = 0;
