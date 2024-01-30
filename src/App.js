@@ -39,7 +39,7 @@ function App() {
 
   // Text by default in editor view
   useEffect(() => {
-    fetch('/byDefault.txt')
+    fetch('/pastebin-md/byDefault.txt')
         .then(response => response.text())
         .then(text => setMarkdown(text))
         .catch(error => console.error('Error fetching default content:', error));
