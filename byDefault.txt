@@ -27,16 +27,15 @@ And image:
 
 ***
 
-## Quote
+## Quotes
 
 > Really wise quote
 
 > ## Blockquote
-> >  If you're going to do something, do it with style! 
+> >  1. Quote 
 > 
-> >  The best things in life sometimes happen spontaneously.
+> >  2. Quote
 >  
-> Jason Statham
 
 ## Code Blocks 
 
@@ -49,7 +48,6 @@ To set highlighted language, just write it's alias like this in code block synta
 ```
 To see supported languages and their aliases, search this official [table](https://github.com/highlightjs/highlight.js/blob/main/SUPPORTED_LANGUAGES.md).
 
-##### Code Block Example
  ```js
 useEffect(() => {
         const savedTheme = getCookie('theme');
