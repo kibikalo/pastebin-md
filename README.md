@@ -13,3 +13,17 @@ In the future updates, I will return to implementing pastebin as well as a few o
     - Marked.js
     - Highlight.js
 
+## Headings 
+![](https://github.com/kibikalo/pastebin-md/blob/main/public/md-heading.png)
+
+## Text Formatting
+![](https://github.com/kibikalo/pastebin-md/blob/main/public/md-text.png)
+
+## Lists
+![](https://github.com/kibikalo/pastebin-md/blob/main/public/md-lists.png)
+
+## Code Blocks
+![](https://github.com/kibikalo/pastebin-md/blob/main/public/md-code.png)
+
+## Quotes
+![](https://github.com/kibikalo/pastebin-md/blob/main/public/md-quotes.png)
